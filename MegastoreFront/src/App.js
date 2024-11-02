@@ -14,7 +14,7 @@ import PedidosAdmin from './Componentes/PedidosAdmin/PedidosAdmin';
 import GestionarCatalogo from './Componentes/Catalogo/GestionarCatalogo';
 import Admin from './Componentes/Admin/Admin';
 import LoginAdmin from './Componentes/Admin/LoginAdmin';
-// import Edicion from './Componentes/Edicion/Edicion';
+import Edicion from './Componentes/Edicion/Edicion';
 
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -81,6 +81,7 @@ function AppContent({ toggleSidebar, isSidebarVisible, carrito, agregarAlCarrito
           <Route path="/loginAdmin" element={<LoginAdmin />} />
           <Route path="/catalogo/GestionarCatalogo" element={<GestionarCatalogo/>} />
           <Route path="/admin/pedidos" element={<Pedidos />} />
+          <Route path="/edicion" element={<Edicion/>} />
         </Routes>
       </div>
     </div>

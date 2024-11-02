@@ -5,29 +5,30 @@ import Cabecera from '../Cabecera/Cabecera';
 
 const Edicion = ({ user }) => {
   const [formData, setFormData] = useState({
-    nombre: user.nombre || '',
-    apellido: user.apellido || '',
-    telefono: user.telefono || '',
-    direccionesEnvio: user.direccionesEnvio || [{ calle: '', altura: '' }],
-    email: user.email || '',
+    nombre: user?.nombre || '',
+    apellido: user?.apellido || '',
+    telefono: user?.telefono || '',
+    direccionesEnvio: user?.direccionesEnvio || [{ calle: '', altura: '' }],
+    email: user?.email || '',
     contrasena: '',
     confirmarContrasena: ''
   });
-  const [errorMessage, setErrorMessage] = useState('');
+  const [setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     // Actualiza el estado del formulario si el usuario cambia
     setFormData({
-      nombre: user.nombre || '',
-      apellido: user.apellido || '',
-      telefono: user.telefono || '',
-      direccionesEnvio: user.direccionesEnvio || [{ calle: '', altura: '' }],
-      email: user.email || '',
+      nombre: user?.nombre || '',
+      apellido: user?.apellido || '',
+      telefono: user?.telefono || '',
+      direccionesEnvio: user?.direccionesEnvio || [{ calle: '', altura: '' }],
+      email: user?.email || '',
       contrasena: '',
       confirmarContrasena: ''
     });
   }, [user]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,9 +53,8 @@ const Edicion = ({ user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    // Redirige después de guardar
-    navigate('/Home');
-  
+        // Redirige después de guardar
+        navigate('/Home');
     if (formData.contrasena !== formData.confirmarContrasena) {
       setErrorMessage('Las contraseñas no coinciden');
       return;
@@ -66,11 +66,12 @@ const Edicion = ({ user }) => {
   };
 
   return (
-    <div className='input-group'>
-      <div><Cabecera/></div>
+    <div className='edit-profile-container'>
+      <Cabecera/>
       <h2>EDITAR PERFIL</h2>
       <form onSubmit={handleSubmit}>
-        <div className="register-group">
+
+        <div>
           <label htmlFor="nombre">Nombre</label>
           <input
             type="text"
@@ -82,7 +83,7 @@ const Edicion = ({ user }) => {
           />
         </div>
         <div>
-        <label htmlFor="apellido">Apellido:</label>
+          <label htmlFor="apellido">Apellido:</label>
           <input
             type="text"
             id="apellido"
@@ -91,8 +92,8 @@ const Edicion = ({ user }) => {
             onChange={handleChange}
             required
           />
-          </div>
-       
+        </div>
+        <div>
           <label htmlFor="telefono">Teléfono</label>
           <input
             type="text"
@@ -102,7 +103,8 @@ const Edicion = ({ user }) => {
             onChange={handleChange}
             required
           />
-      
+        </div>
+
         <div className='direcciones-envio'>
           <label>Direcciones de Envío</label>
           {formData.direccionesEnvio.map((direccion, index) => (
@@ -131,15 +133,15 @@ const Edicion = ({ user }) => {
 
         <div className='input-group'>
           <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
         </div>
         <div>
@@ -152,7 +154,7 @@ const Edicion = ({ user }) => {
             onChange={handleChange}
           />
         </div>
-        <div >
+        <div>
           <label htmlFor="confirmarContrasena">Confirmar Contraseña</label>
           <input
             type="password"

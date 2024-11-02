@@ -75,7 +75,12 @@ function Menu({ isVisible, toggleSidebar }) {
                                 Ingreso como administrador</Link>
                             </li>
                         </div>
-                        <li><button>Editar Perfil</button></li>
+                        <Link to="/edicion"> {/* Agregamos el enlace a la página de editar perfil */}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146 0 15.5 3.354l-1.646 1.646L10.5 1.5 12.146 0zM0 13.5V16h2.5L13.854 6.646 12.208 5 0 17.208V13.5z" />
+                            </svg>
+                            Editar Perfil
+                        </Link>
                     </li>
                 </ul>
             )}

@@ -1,37 +1,73 @@
 /* EditProfile.css */
 .edit-profile-container {
-    padding: 20px;
-    text-align: center; /* Centra el texto */
-    margin-top: 80px; /* Ajusta este valor según sea necesario */
-  }
-  
-  .input-group {
-    display: contents;
-  }
-  
-  .input-group label {
-    margin-bottom: 5px; /* Espacio entre la etiqueta y el campo */
-  }
-  
-  .input-group input {
-    border: none; /* Sin borde */
-    border-bottom: 2px solid black; /* Borde inferior negro */
-    background: transparent; /* Sin fondo */
-    outline: none; /* Sin contorno al hacer clic */
-    padding: 5px; /* Espacio interno */
-    width: 100%; /* Ancho completo */
-  }
-  
-  .save-button {
-    background-color: #a6a6a6;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .save-button:hover {
-    background-color: #f9cd67;
-  }
-  
+  padding: 20px;
+  text-align: center; /* Centra el texto */
+  margin-top: 80px; /* Ajusta este valor según sea necesario */
+}
+
+.register-group, .input-group, .direcciones-envio {
+  margin-bottom: 20px; /* Espacio entre grupos de inputs */
+}
+
+.label {
+  display: block; /* Asegura que la etiqueta ocupe todo el ancho */
+  margin-bottom: 5px; /* Espacio entre la etiqueta y el campo */
+}
+
+input {
+  border: none; /* Sin borde */
+  border-bottom: 2px solid black; /* Borde inferior negro */
+  background: transparent; /* Sin fondo */
+  outline: none; /* Sin contorno al hacer clic */
+  padding: 5px; /* Espacio interno */
+  width: 100%; /* Ancho completo */
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between; /* Espacio entre botones */
+}
+
+button {
+  padding: 10px 15px; /* Espacio interno en los botones */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f9cd67; /* Color al pasar el mouse */
+}
+
+.direcciones-envio {
+  margin-bottom: 20px; /* Espacio debajo de la sección de direcciones */
+}
+
+.direccion-envio-group {
+  display: flex; /* Usamos flexbox para alinear los elementos horizontalmente */
+  align-items: center; /* Alineación vertical centrada */
+  margin-bottom: 10px; /* Espacio entre cada grupo de dirección */
+}
+
+.direccion-envio-group input {
+  margin-right: 10px; /* Espacio a la derecha del input */
+  padding: 5px; /* Espacio interno de los inputs */
+  flex: 1; /* Ocupa el espacio restante */
+  min-width: 120px; /* Ancho mínimo para los inputs */
+}
+
+.direccion-envio-group button {
+  padding: 5px 10px; /* Espacio interno del botón */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+}
+
+button[type="button"] {
+  background-color: #ff4d4d; /* Color de fondo para el botón Eliminar */
+  color: white; /* Color del texto del botón */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+button[type="button"]:hover {
+  background-color: #ff1a1a; /* Color de fondo al pasar el ratón */
+}
