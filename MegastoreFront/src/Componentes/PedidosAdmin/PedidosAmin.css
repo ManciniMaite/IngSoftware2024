@@ -1,24 +1,16 @@
-.actualizar-btn {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 60px; /* Ajusta el padding general */
-    padding-left: 5px;  /* Reduce el espacio del lado izquierdo */
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 13px;
-    margin-left: 10px;
-    text-align: center;
-    
+.actualizar-btn-pedidosAdmin {
+    background-color: #5bf47f5b;
   }
   
-  .actualizar-btn:hover {
-    background-color: #218838;
+  .actualizar-btn-pedidosAdmin:hover {
+    background-color: #35c15472;
+  }
+  .detalles-btn-pedidosAdmin {
+    background-color: #fcf817c0;
   }
   
-  
-  .detalles-btn, .actualizar-btn {
-    margin: 0 5px;
+  .detalles-btn-pedidosAdmin:hover {
+    background-color: #e2e666ad;
   }
   
   .confirmacion-cambio {
@@ -33,7 +25,7 @@
     z-index: 1000; /* Asegura que esté por encima de otros elementos */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra para mayor visibilidad */
 }
-
+ 
 .overlay {
   position: fixed;
   top: 0;
@@ -48,12 +40,13 @@
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 10px 75px;
+    padding: 10px 6px;
     padding-left: 5px;  /* Reduce el espacio del lado izquierdo */
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
-    margin-right: 10px;
+    margin-right: 0px;
+    
   }
   
   .confirmar-btn:hover {
@@ -64,7 +57,7 @@
     background-color: #dc3545;
     color: white;
     border: none;
-    padding: 10px 70px;
+    padding: 10px 6px;
     padding-left: 5px;  /* Reduce el espacio del lado izquierdo */
     cursor: pointer;
     border-radius: 4px;

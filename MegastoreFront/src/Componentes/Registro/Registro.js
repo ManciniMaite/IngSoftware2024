@@ -122,8 +122,8 @@ const Registro = () => {
       <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fillRule="currentColor" className="registro-svg" viewBox="0 0 16 16">
         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
       </svg>
-      <h1>REGÍSTRATE</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>REGÍSTRATE</h1> 
+      <form className='form-registro'onSubmit={handleSubmit}>
         <div className="register-group-nombre">
           <label htmlFor="nombre">Nombre</label>
           <input
@@ -175,23 +175,11 @@ const Registro = () => {
               onChange={(e) => handleNewAddressChange('numero', e.target.value)}
               placeholder="Altura"
             />
-            <button type="button" className="add-button" onClick={handleAddAddress}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fillRule="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
-                <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
-              </svg>
+            <button  className="agregarDirecciones-btn" onClick={handleAddAddress}>
+              Agregar Dirección
             </button>
-            <button type="button" className='mostrar-ocultar-button' onClick={() => setShowDirections(!showDirections)}>
-              {showDirections ? (
-                // SVG para ocultar (flecha hacia arriba)
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fillRule="currentColor" className="bi bi-chevron-up" viewBox="0 0 16 16">
-                  <path fillRule="evenodd" d="M1.646 11.354a.5.5 0 0 0 .708 0L8 5.707l5.646 5.647a.5.5 0 0 0 .708-.708l-6-6a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 0 .708z" />
-                </svg>
-              ) : (
-                // SVG para mostrar (flecha hacia abajo)
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fillRule="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
-                  <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                </svg>
-              )}
+            <button  className='verDirecciones-btn' onClick={() => setShowDirections(!showDirections)}>
+              Ver Direcciones
             </button>
 
 

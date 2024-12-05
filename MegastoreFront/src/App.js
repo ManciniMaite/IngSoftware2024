@@ -1,5 +1,8 @@
-import React, { useState } from 'react'; // Asegúrate de importar useState
+import React, { useState, useEffect } from 'react';
+import { AuthProvider } from './Componentes/Autenticacion/AuthContext'; // Contexto de autenticación
+import { SidebarProvider } from './Componentes/Autenticacion/SidebarContext'; // Contexto de la sidebar
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { useSidebar } from './Componentes/Autenticacion/SidebarContext'; // Importa el hook useSidebar
 import Menu from './Componentes/Menu/Menu';
 import Home from './Componentes/Home/Home';
 import Login from './Componentes/Login/Login';
@@ -14,47 +17,42 @@ import PedidosAdmin from './Componentes/PedidosAdmin/PedidosAdmin';
 import GestionarCatalogo from './Componentes/Catalogo/GestionarCatalogo';
 import Admin from './Componentes/Admin/Admin';
 import LoginAdmin from './Componentes/Admin/LoginAdmin';
-// import Edicion from './Componentes/Edicion/Edicion';
+import Edicion from './Componentes/Edicion/Edicion';
+import ReporteVentas from './Componentes/Estadisticas/ventas';
+import EstadisticasHome from './Componentes/Estadisticas/EstadisticasHome';
 
 function App() {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [carrito, setCarrito] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Añadido: estado de isLoggedIn
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || '');
 
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
-
-  const agregarAlCarrito = (producto) => {
-    setCarrito((prevCarrito) => {
-      const productoExistente = prevCarrito.find((item) => item.id === producto.id);
-      if (productoExistente) {
-        return prevCarrito.map((item) =>
-          item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
-        );
-      } else {
-        return [...prevCarrito, { ...producto, cantidad: 1 }];
-      }
-    });
-  };
+  useEffect(() => {
+    const savedRole = localStorage.getItem('userRole');
+    if (savedRole) {
+      setUserRole(savedRole);
+    }
+  }, []);
 
   return (
-    <Router>
-      <AppContent
-        toggleSidebar={toggleSidebar}
-        isSidebarVisible={isSidebarVisible}
-        carrito={carrito}
-        agregarAlCarrito={agregarAlCarrito}
-        isLoggedIn={isLoggedIn} // Pasamos el estado de isLoggedIn
-        setIsLoggedIn={setIsLoggedIn} // Pasamos la función para cambiar el estado
-      />
-    </Router>
+    <AuthProvider>  {/* Contexto de autenticación */}
+      <SidebarProvider>  {/* Contexto de la sidebar */}
+        <Router>
+          <AppContent
+            carrito={carrito}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+            userRole={userRole}
+          />
+        </Router>
+      </SidebarProvider>
+    </AuthProvider>
   );
 }
 
-function AppContent({ toggleSidebar, isSidebarVisible, carrito, agregarAlCarrito, isLoggedIn, setIsLoggedIn }) {
+function AppContent({ carrito, isLoggedIn, setIsLoggedIn, userRole }) {
   const location = useLocation();
-
+  const { isSidebarVisible, toggleSidebar } = useSidebar(); // Usamos el hook de la sidebar
+  
   const shouldShowCabecera = () => {
     return ['/login', '/registro', '/catalogo'].includes(location.pathname);
   };
@@ -68,19 +66,18 @@ function AppContent({ toggleSidebar, isSidebarVisible, carrito, agregarAlCarrito
       <div className={`content ${isSidebarVisible ? 'with-sidebar' : 'full-width'}`}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalogo" element={<Catalogo agregarAlCarrito={agregarAlCarrito} />} />
-          <Route path="/sobre-nosotros" element={<h1>Sobre Nosotros</h1>} />
-          <Route path="/sucursales" element={<h1>Sucursales</h1>} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} /> {/* Pasa la función a Login */}
+          <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/pedidosAdmin" element={<PedidosAdmin />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/loginAdmin" element={<LoginAdmin />} />
+          <Route path="/admin/pedidos" element={<Pedidos />} />
           <Route path="/pedidos" element={<Pedidos />} />
           <Route path="/pedido/:id" element={<DetallePedido />} />
+          <Route path="/edicion" element={<Edicion />} />
           <Route path="/carrito" element={<Carrito productos={carrito} />} />
-          <Route path="/pedidosAdmin" element={<PedidosAdmin />} />
-          <Route path="/admin" element={<Admin />} /> {/*  ruta para admin */}
-          <Route path="/loginAdmin" element={<LoginAdmin />} />
-          <Route path="/catalogo/GestionarCatalogo" element={<GestionarCatalogo/>} />
-          <Route path="/admin/pedidos" element={<Pedidos />} />
+          <Route path="/estadisticasHome" element={<EstadisticasHome />} />
         </Routes>
       </div>
     </div>

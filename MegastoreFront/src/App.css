@@ -9,7 +9,8 @@
     align-items: center;
     height: 100%; /* Ocupa toda la altura de la pantalla */
     text-align: center;
-    background-color: #f9f9f9;
+    background-color:transparent;
+    overflow: hidden;
   }
   
 
@@ -22,7 +23,7 @@
   }
   
   .with-sidebar {
-    margin-left: 250px; /* Ajusta según el ancho del sidebar */
+    margin-left: 0; /* Ajusta según el ancho del sidebar */
   }
   
   .full-width {

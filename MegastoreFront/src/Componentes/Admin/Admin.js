@@ -8,9 +8,10 @@ const Admin = () => {
   return (
     <div className="admin-container">
       <aside className="sidebar">
-        <nav>
+        <nav> 
           <ul>
-            <li><Link to="/catalogo/GestionarCatalogo">Gestionar catálogo</Link></li>
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/catalogo">Gestionar catálogo</Link></li>
 
             <li><Link to="/admin/Pedidos">Gestionar pedido</Link></li>
 

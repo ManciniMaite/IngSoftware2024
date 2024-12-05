@@ -33,22 +33,25 @@
 }
 
 .grid-container p {
-    font-size: 1.5rem; /* Ajusta el tamaño de la fuente según tu diseño */
+    font-size: 1.3rem; /* Ajusta el tamaño de la fuente según tu diseño */
     color: rgb(0, 0, 0); /* Puedes cambiar el color a lo que prefieras */
-    margin: -auto;
+    margin: auto;
     text-align: center; /* Centra el texto */
 }
 
 .product-card {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: -20px;
     border-radius: 4px;
     text-align: center;
+    
 }
 
 .product-image {
     width: 100%;
-    height: auto;
+    height:auto;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .product-name {
@@ -60,3 +63,119 @@
     font-size: 16px;
     color: #555;
 }
+.product-stock {
+    font-size: 10px;
+}
+
+
+.add-button-catalogo{
+    background-color: #0bd00e;
+    color: white;
+    border: none;
+    padding: 10px 1px;
+    cursor: pointer;
+    margin-top: -20px;
+    margin-left: 650px;
+    margin-bottom: 20px;
+    transition: background-color 0.8s;
+   
+}
+.product-actions {
+    display: flex;
+    
+    justify-content: flex-start; /* Alinea los botones al principio (puedes cambiarlo a "center" si prefieres centrarlos) */
+}
+
+.editar-btn-catalogo, .eliminar-btn-catalogo {
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Ajusta la apariencia de los botones si es necesario */
+.editar-btn-catalogo {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.eliminar-btn-catalogo {
+    background-color: #f44336; /* Rojo */
+    color: white;
+    margin-left: 155px;
+}
+/* Botón para cancelar */
+.add-button-catalogo.cancel{
+    background-color: red;
+}
+.add-button-catalogo.cancel:hover {
+    background-color: #e60000; /* Rojo más oscuro cuando pasas el ratón */
+  }
+
+  .add-button-catalogo2{
+    display: flex;            /* Usamos flexbox para alinear el contenido */
+    justify-content: center;  /* Centra el texto horizontalmente */
+    align-items: center;      /* Centra el texto verticalmente */
+    width: 100%;              /* Si quieres que el botón ocupe todo el ancho disponible */
+    padding: 10px 20px;       /* Ajusta el padding según lo que necesites */
+    margin-top: 20px;
+    margin-left: 115px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;  /* Color de fondo, puedes cambiarlo */
+    color: white;             /* Color del texto */
+    cursor: pointer;
+    text-align: center;       /* Asegura que el texto esté alineado en el centro */
+    transition: background-color 0.3s ease; /* Transición para el hover */
+   
+}
+.agregar-btn-carrito{
+    background-color: transparent;
+    
+}
+.eliminar-btn-carrito{
+    background-color: transparent;
+}
+.add-product-form{
+     display: flex;
+    flex-direction: column; /* Organiza los elementos en columna */
+    gap: 5px; /* Espacio entre cada par label-input */
+    max-width: 400px; /* Establece un ancho máximo para el formulario */
+    margin: 0 auto; /* Centra el formulario en la página */
+    padding: 20px; /* Agrega espacio interno */
+
+}
+
+
+.product-variantes {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    gap: 10px; /* Espacio entre los desplegables */
+    font-size: 1rem; /* Tamaño de fuente */
+    color: #555;
+    margin-top: 10px;
+}
+
+.variantes-dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido dentro del desplegable */
+    width: 100%;
+}
+
+.variantes-select {
+    padding: 5px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: 200px; /* Ancho del desplegable */
+    text-align: center;
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+

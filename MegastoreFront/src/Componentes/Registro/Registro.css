@@ -7,6 +7,14 @@
 .register-container h1{
   margin-bottom: 0px;
 }
+.form-registro{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+}
 
 .button-group-register button {
   margin: 0px 3px; /* Margen horizontal entre botones */
@@ -64,7 +72,9 @@
 
 .calle-altura{
   display: flex;
-  margin-bottom: -20px;
+  margin-bottom: 0px;
+  margin-left: 150px;
+  position: absolute;
   
 }
 
@@ -79,7 +89,7 @@
   margin-right: 10px;
   margin-top: -5px;
   height: 5px;
-  
+   
   
 }
 
@@ -98,7 +108,7 @@
 /* Botón para agregar dirección en una línea separada */
 .direccion-envio-group {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   margin-top: 10px;
   margin-bottom: -10px;
@@ -107,41 +117,9 @@
   
 }
 
-.add-button {
-  background-color: #28a745; /* Color verde */
-  color: white; /* Color del texto */
-  border: none; /* Sin borde */
-  border-radius: 4px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor de puntero */
-  padding: 5px 10px; /* Espaciado interno */
-  margin-right: 30px; /* Margen derecho para separación */
-  margin-top: 0px; /* Sube el botón 10px más */
-  width: 30px;
-  height: 25px;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-}
 
-.add-button:hover {
-  background-color: #218838; /* Color verde más oscuro al pasar el mouse */
-}
-.mostrar-ocultar-button {
-  background-color: #b2b8b4; /* Color verde */
-  color: rgb(0, 0, 0); /* Color del texto */
-  border: none; /* Sin borde */
-  border-radius: 4px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor de puntero */
-  padding: 5px 10px; /* Espaciado interno */
-  margin-left: -20px; /* Margen derecho para separación */
-  
-  margin-bottom: 30px;
-  width: 100px;
-  padding-top: 5px;
-}
-.mostrar-ocultar-button:hover{
-  background-color: #ece6a9; /* Color rojo más oscuro al pasar el mouse */
-}
+
+
 
 
 
@@ -182,8 +160,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  margin-right: 40px;
+  margin-right: 60px;
   margin-left: -15px;
+  margin-top: 5px;
+  
+  
+  
 }
 
 .register-group-contraseña label {
@@ -197,13 +179,13 @@
 }
 
 .register-group-contraseña input {
-  flex: 2;
+ 
   border: none;
   border-bottom: 1px solid rgb(148, 142, 142);
   background: transparent;
   outline: none;
   padding: 10px 5px;
-  margin-left: 10px;
+  
 }
 /*Email*/
 .register-group-email {
@@ -306,7 +288,7 @@
   text-align: right;
   padding-right: 10px;
   margin-top: 25px;
-  white-space: nowrap;
+  white-space: nowrap; 
   display: inline;
 
 }
@@ -337,8 +319,8 @@
 
    /* Cambiar la posición del cuadro */
    position: absolute; /* Cambiar a 'absolute' o 'fixed' si lo prefieres */
-   top: 421px; /* Mueve el cuadro hacia abajo */
-   left: 1128px; /* Mueve el cuadro hacia la derecha */
+   top: 195px; /* Mueve el cuadro hacia abajo */
+   left: 1080px; /* Mueve el cuadro hacia la derecha */
 }
 
 
@@ -379,36 +361,7 @@
   display: row;
 }
 
-.cancel-button {
-  background-color: red; /* Color del botón de cancelar */
-  color: white; /* Color del texto del botón */
-  border: none; /* Sin borde */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  
-  
-}
-.cancel-button svg{
-  left: 0;
-  right: 10px;
-}
-.cancel-button:hover {
-  background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
-}
-.mostrar-ocultar-button{
-  align-content: center;
-  justify-content: center;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 1px;
-  
 
-}
 
 /*pantalla responsive*/
 @media (max-width: 600px) {

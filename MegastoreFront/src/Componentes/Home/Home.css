@@ -6,6 +6,9 @@ body, html {
   height: 100%;
   
 }
+body.no-scroll {
+  overflow: hidden; /* Evitar el desplazamiento de la página */
+}
 .home{
   overflow: hidden; /* Evita las barras de desplazamiento */
 }
@@ -13,6 +16,11 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  
+  width: 100%;
+  height: 100%;
+  padding-right:0;
 }
 
 /* Centrado del título */
@@ -30,15 +38,24 @@ body, html {
   margin: 20px 0; /* Espacio arriba y abajo de la imagen */
 }
 
+.user-info-home{
+  text-align: center;    
+}
+.user-info-home p{
+  display: inline-block;
+  font-size: 16px;
+  position: absolute;
+  top: 30px;
+  left: 1340px;
 
-
+}
 
 .social-buttons {
   display: flex;
   flex-direction: column; /* Stack buttons vertically */
   position: absolute; /* Position it to the right of the image */
-  right: 200px; /* Adjust this to position closer or further from the image */
-  top: 220px; /* Align to the top of the image */
+  left: 1250px; /*posicion vertical de los botones sociales */
+  top: 160px; /* Align to the top of the image */
 }
 
 .social-buttons button {
@@ -55,6 +72,7 @@ body, html {
 .header-buttons {
   display: flex; /* Usar flexbox para alinear los botones */
   align-items: center; /* Centrar verticalmente los botones */
+  
 }
 
 .header-buttons > * {

@@ -6,7 +6,7 @@
   justify-content: center; /* Centra los elementos verticalmente */
   height: 100vh; /* Altura completa de la ventana */
   text-align: center; /* Centra el texto */
-}
+} 
 
 .bi-person {
   margin-bottom: 40px; /* Espacio entre el logo y el título */
@@ -17,32 +17,32 @@ h1 {
   margin-bottom: 30px; /* Espacio entre el título y el formulario */
 }
 
-form {
+.login-container form {
   display: flex;
   flex-direction: column; /* Organiza los elementos del formulario en columna */
   width: 100%; /* Ancho del formulario */
   align-items: center; /* Centra los inputs y el botón */
 }
 
-form div {
+.login-container form div {
   margin-bottom: 15px; /* Espacio entre los inputs */
   max-width: 400px; /* Máximo ancho para evitar que crezca demasiado */
 }
 
-.input-group {
+.input-group-login {
   position: relative; /* Permite posicionar el borde inferior */
   margin-bottom: 15px; /* Espacio entre los inputs */
   width: 100%; /* Asegura que el input ocupe el 100% del contenedor */
   max-width: 400px; /* Máximo ancho para mantener proporción */
 }
 
-.input-group label {
+.input-group-login label {
   display: block; /* Asegura que el label se comporte como bloque */
   text-align: left; /* Alinea el texto a la izquierda */
   margin-bottom: 5px; /* Espacio entre el label y el input */
 }
 
-.input-group input {
+.input-group-login input {
   padding: 10px; /* Espaciado interno */
   border: none; /* Sin borde */
   border-bottom: 1px solid #cecece; /* Borde inferior del input */
@@ -59,9 +59,10 @@ button {
   border-radius: 5px; /* Bordes redondeados */
   cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
   max-width: 200px; /* Asegura que el botón no crezca demasiado */
+  margin-bottom: 10px;
 }
 
-.register-prompt {
+.login-container.register-prompt {
   margin-top: 15px; /* Espacio encima de la frase de registro */
 }
 

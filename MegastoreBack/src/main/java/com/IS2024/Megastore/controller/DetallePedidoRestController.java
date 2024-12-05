@@ -30,22 +30,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DetallePedidoRestController {
     @Autowired
     private DetallePedidoService service;
-    
+
     @GetMapping("/getAll")
     public List<DetallePedido> list() {
         return this.service.findAll();
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable Long id) {
         Optional<DetallePedido> detallePedido = this.service.findById(id);
-        if(detallePedido.isPresent()){
-            return new ResponseEntity<>(detallePedido.get(),HttpStatus.OK);
-        } else{
+        if (detallePedido.isPresent()) {
+            return new ResponseEntity<>(detallePedido.get(), HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<?> put(@PathVariable Long id, @RequestBody DetallePedido input) {
         try {
@@ -55,21 +55,21 @@ public class DetallePedidoRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-    
+
     @PostMapping("/insert")
     public ResponseEntity<?> post(@RequestBody DetallePedido input) {
         DetallePedido createdDetallePedido = service.createDetallePedido(input);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdDetallePedido);
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-       try {
+        try {
             this.service.deleteById(id);
             Optional<DetallePedido> detallePedido = this.service.findById(id);
-            if(!detallePedido.isPresent()){
+            if (!detallePedido.isPresent()) {
                 return new ResponseEntity<>(HttpStatus.OK);
-            } else{
+            } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (ResourceNotFoundException e) {

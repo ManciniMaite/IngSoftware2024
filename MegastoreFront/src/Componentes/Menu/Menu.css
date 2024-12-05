@@ -1,13 +1,13 @@
 /* Estilos generales de la barra lateral */
 .sidebar {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0px;
     height: 100%;
     width: 250px; /* Ancho de la barra lateral cuando está visible */
     background-color: #f8f9fa;
     transition: margin-left 0.6s ease;
-    z-index: 1000;
+    z-index: 10000000000;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     padding: 0;
   }
@@ -28,9 +28,9 @@
   
   /* Estilos del botón que despliega el menú (logo del menú) */
   .toggle-button {
-    position: fixed; /* Posición fija para que siempre esté visible */
-    top: 100px;
-    left: 300px; /* Ajusta la posición del botón para que esté fuera del sidebar */
+    position: absolute; /* Posición fija para que siempre esté visible */
+    top: 15px;
+    left: 10px; /* Ajusta la posición del botón para que esté fuera del sidebar */
     z-index: 1001;
     background: none; /* Sin fondo */
     border: none;
@@ -41,15 +41,15 @@
   
   /* Botón cuando el menú está cerrado */
   .sidebar.hidden .toggle-button {
-    left: -30px; /* Asegura que el botón siempre esté visible cuando el menú está cerrado */
-    top: 15px;
+    left: -70px; /* Asegura que el botón siempre esté visible cuando el menú está cerrado */
+    top: 25px;
     width: 80%;
   }
   
   /* Botón cuando el menú está abierto */
   .sidebar.visible .toggle-button {
-    left: 160px; /* Mueve el botón ligeramente cuando el menú está abierto */
-    top: 15px; 
+    left: -200px; /* Mueve el botón ligeramente cuando el menú está abierto */
+    top: 25px; 
   }
   
   /* Estilo para el logo del menú */
@@ -57,6 +57,7 @@
     width: 30px;
     height: 30px;
     transition: fill 0.6s ease; /* Transición para el cambio de color */
+    margin-left: 400px;
   }
   
   /* Lista de navegación dentro del menú */
@@ -96,8 +97,9 @@
   
   /* Estilos del contenido que está en la página principal */
   .content {
-    margin-left: 250px; /* El contenido se ajusta cuando la barra está visible */
-    transition: margin-left 0.6s ease;
+      margin-left: 0; /* Elimina el desplazamiento */
+      transition: none; /* Opcional: elimina la animación del margen */
+    
   }
   
   .content.closed {

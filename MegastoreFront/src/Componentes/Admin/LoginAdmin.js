@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LoginAdmin.css'; // Archivo CSS para estilos, si lo necesitas
+
 import Cabecera from '../Cabecera/Cabecera';
 
 const LoginAdmin = () => {
@@ -10,7 +10,7 @@ const LoginAdmin = () => {
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
 
         // Verificación de las credenciales
         if (username === 'admin' && password === 'admin') {

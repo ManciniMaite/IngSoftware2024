@@ -6,10 +6,13 @@ package com.IS2024.Megastore.repositories;
 
 import com.IS2024.Megastore.entities.Rol;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
 /**
  *
  * @author maite
  */
+
 public interface RolRepository extends JpaRepository<Rol, Long> {
-    
+    Optional<Rol> findByNombre(String nombre);
 }

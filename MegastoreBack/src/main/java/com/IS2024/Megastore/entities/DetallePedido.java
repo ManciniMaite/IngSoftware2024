@@ -24,7 +24,7 @@ public class DetallePedido {
     private Long id;
     private int cantidad;
     @ManyToOne
-    @JoinColumn(name="id_producto", nullable=false)
+    @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
-    private long precio; 
+    private long precio;
 }

@@ -1,13 +1,28 @@
 // src/Home.js
+import { useAuth } from '../Autenticacion/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import imagenInicio from '../../Elementos/imagen_inicio.jpg';
 import LoginButton from '../BotonUsuario/BotonUsuario';
 import './Home.css';
 import BotonCarrito from '../BotonCarrito/BotonCarrito'
 
-const Home = ({ carrito, navigate }) => {
+
+const Home = () => {
+  const { isLoggedIn, user } = useAuth();
+  const navigate = useNavigate();
   const handleUserIconClick = () => {
-    navigate('./Login');
+
+    console.log('isLoggedIn:', isLoggedIn); // Verificar valor
+    if (!isLoggedIn) {
+      navigate('/login'); // Redirige a la ruta '/perfil'
+
+    } else {
+      console.log('Usuario autenticado:', user); // Muestra información del usuario si está logueado
+    }
   };
+  
+ 
+   
 
   return (
     <div className='container-home'>
@@ -17,8 +32,16 @@ const Home = ({ carrito, navigate }) => {
         <img src={imagenInicio} alt="Imagen de Inicio" className="center-image" />
 
         <div className="header-buttons">
-        <BotonCarrito carrito={carrito} />        
-        <LoginButton onClick={handleUserIconClick} />
+          
+          <div className="user-section">
+            <LoginButton onClick={handleUserIconClick} />
+            {isLoggedIn && ( // Si el usuario está autenticado, muestra su información
+              <div className="user-info-home">
+                <p>{`${user?.nombre} ${user?.apellido}`}</p>
+              </div>
+            )}
+          
+         </div>
         </div>
 
       </div>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -30,22 +31,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VarianteProductoRestController {
     @Autowired
     private VarianteProductoService service;
-    
+
     @GetMapping("/getAll")
     public List<VarianteProducto> list() {
         return this.service.findAll();
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable Long id) {
         Optional<VarianteProducto> clase = this.service.findById(id);
-        if(clase.isPresent()){
-            return new ResponseEntity<>(clase.get(),HttpStatus.OK);
-        } else{
+        if (clase.isPresent()) {
+            return new ResponseEntity<>(clase.get(), HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<?> put(@PathVariable Long id, @RequestBody VarianteProducto input) {
         try {
@@ -55,25 +56,30 @@ public class VarianteProductoRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-    
+
     @PostMapping("/insert")
     public ResponseEntity<?> post(@RequestBody VarianteProducto input) {
         VarianteProducto createdVarianteProducto = service.createVarianteProducto(input);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdVarianteProducto);
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-       try {
+        try {
             service.deleteById(id);
             Optional<VarianteProducto> varianteProducto = this.service.findById(id);
-            if(!varianteProducto.isPresent()){
+            if (!varianteProducto.isPresent()) {
                 return new ResponseEntity<>(HttpStatus.OK);
-            } else{
+            } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/variantes/tipo-codigo")
+    public List<VarianteProducto> getVariantesByTipoCodigo(String codigo) {
+        return service.findByTipoVarianteCodigo(codigo);
     }
 }

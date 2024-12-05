@@ -52,21 +52,13 @@
     background-color: #f1f1f1;
   }
   
-  .detalles-btn {
-    background-color: #a6a6a6;
-    color: white;
-    padding: 10px 12px;
-    height: 60px;
-    width: 70px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
   
-  .detalles-btn:hover {
-    background-color: #f9cd67;
-  }
+  
+  
   .pedidos-tabla td {
     vertical-align: middle;
     padding: 10px;
+  }
+  .cancelar-btn-pedidos{
+    background-color: red;
   }

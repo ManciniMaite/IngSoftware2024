@@ -4,6 +4,8 @@
  */
 package com.IS2024.Megastore.entities;
 
+import com.IS2024.Megastore.entities.Estado;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,11 +33,17 @@ public class Pedido {
     @JoinColumn(name = "id_pedido") // Esta columna irá en DetallePedido
     private List<DetallePedido> detallesPedido;
     @ManyToOne
-    @JoinColumn(name="id_usuario", nullable=false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
-    private Date fechaPedido;
     @ManyToOne
-    @JoinColumn(name="id_estado", nullable=false)
+    @JoinColumn(name = "id_direccion", nullable = false)
+    private Direccion direccion;
+
+    private Date fechaPedido;
+    private Date fechaEntrega;
+    private Date fechaCancelacion;
+    @ManyToOne
+    @JoinColumn(name = "id_estado", nullable = false)
     private Estado estado;
     private long precio;
 }
