@@ -59,7 +59,7 @@ const Registro = () => {
 
   // Redirecciona al usuario a la página de inicio si cancela el registro
   const handleCancel = () => {
-    navigate('/Home');
+    navigate('/');
   };
 
   // Manejador para el envío del formulario
