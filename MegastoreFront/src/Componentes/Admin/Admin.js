@@ -1,5 +1,6 @@
 // src/Componentes/Admin/Admin.js
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {  Link } from 'react-router-dom';
 
 import './Admin.css'; // Importa el archivo CSS

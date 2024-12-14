@@ -6,8 +6,8 @@ package com.IS2024.Megastore.model;
 
 import lombok.Data;
 
-/**
- *
+ /**
+ * Clase para el request de iniciar sesión.
  * @author maite
  */
 @Data

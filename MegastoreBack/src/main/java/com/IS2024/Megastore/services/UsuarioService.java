@@ -26,241 +26,289 @@ import org.springframework.stereotype.Service;
  * @author maite
  */
 @Service
-public class UsuarioService implements UsuarioRepository{
-    
-    
+public class UsuarioService implements UsuarioRepository {
+
     @Autowired
     private UsuarioRepository repository;
     @Autowired
     private DireccionService direccionService;
 
-    
+    // validador de contraseña
+
+    public void validarContrasenia(String contrasenia) {
+        if (contrasenia == null || contrasenia.length() >= 8 || contrasenia.length() <= 20) {
+            throw new InvalidEntityException("La contraseña debe tener entre 8 y 20 caracteres");
+        }
+
+    }
+
+    public void validarNumeroTelefono(String nroTelefono) {
+        if (nroTelefono == null || !nroTelefono.matches("^\\d{10}$")) {
+            throw new InvalidEntityException("El formato de numero de telefono no es correcto");
+        }
+    }
+
     @Override
     public Optional<Usuario> findById(Long id) {
         return this.repository.findById(id);
     }
-    
+
     @Override
     public Usuario getById(Long id) {
-        return this.repository.getById(id);
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + id));
     }
-    
+
     @Override
     public List<Usuario> findAll() {
         return this.repository.findAll();
     }
-    
-    public Usuario updateUsuario(Long id, Usuario usuario){
-        Optional<Usuario> existingUsuario = this.repository.findById(id);
-        if(existingUsuario.isPresent()){
-            Usuario updatedUsuario = existingUsuario.get();
-            updatedUsuario.setNombre(usuario.getNombre());
-            updatedUsuario.setApellido(usuario.getApellido());
-            if(!usuario.getCorreo().isEmpty()){
-                if(updatedUsuario.getCorreo() != usuario.getCorreo()){
-                    //EL US ESTA MODIFICANDO EL CORREO
-                    Optional<Usuario> existingUs = this.repository.findByCorreo(usuario.getCorreo()); 
-                    if(existingUs.isPresent()){
-                        throw new InvalidEntityException("Ya existe un usuario con el mismo correo");
-                    } else{
-                        updatedUsuario.setCorreo(usuario.getCorreo());
-                    }
-                }
-            } else {
-                throw new InvalidEntityException("El correo es un campo obligatorio");
-            }
-            updatedUsuario.setNroTelefono(usuario.getNroTelefono());
-            updatedUsuario.setContrasenia(usuario.getContrasenia());
-            for(Direccion d : usuario.getDirecciones()) { //iteramos por las direcciones que tenga el usuario a Actualizar
-                if (d.getId() != null && d.getId() > 0) { //si la direccion tiene un id la actualizamos
-                    this.direccionService.updateDireccion(d.getId(), d);
-                } else {  //sino creamos una nueva direccion
-                    this.direccionService.save(d);
-                }
 
-                //se verifica si la direccion esta o no en la lista de direcciones 
-                if (!updatedUsuario.getDirecciones().contains(d)) {
-                    updatedUsuario.getDirecciones().add(d); //si no esta la agregamos
+    public Usuario updateUsuario(Long id, Usuario usuario) {
+        Usuario updatedUsuario = getById(id);
+
+        updatedUsuario.setNombre(usuario.getNombre());
+        updatedUsuario.setApellido(usuario.getApellido());
+        updatedUsuario.setNroTelefono(usuario.getNroTelefono());
+
+        if (usuario.getCorreo() != null && !usuario.getCorreo().isEmpty()) {
+            if (!updatedUsuario.getCorreo().equals(usuario.getCorreo())) {
+                Optional<Usuario> existingUs = repository.findByCorreo(usuario.getCorreo());
+                if (existingUs.isPresent()) {
+                    throw new InvalidEntityException("Ya existe un usuario con el mismo correo");
                 }
+                updatedUsuario.setCorreo(usuario.getCorreo());
             }
-            return this.repository.save(updatedUsuario);
-        } else  {
-            //return this.repository.save(usuario);
-            throw new ResourceNotFoundException("Usuario no encontrado con id: " + id);
-        }
-    }
-    
-    public Usuario createUsuario(Usuario us){
-        if(us.getCorreo() == null || "".equals(us.getCorreo()) || us.getCorreo().isEmpty()){
-           throw new InvalidEntityException("El correo es un campo obligatorio.");
         } else {
-           Optional<Usuario> existingUs = this.repository.findByCorreo(us.getCorreo()); 
-           if(existingUs.isPresent()){
-               throw new InvalidEntityException("Ya existe un usuario con el mismo correo");
-           } else{
-               return this.repository.save(us);
-           }
+            throw new InvalidEntityException("El correo es un campo obligatorio");
         }
+
+        validarContrasenia(usuario.getContrasenia());
+        updatedUsuario.setContrasenia(usuario.getContrasenia());
+
+        for (Direccion d : usuario.getDirecciones()) { // iteramos por las direcciones que tenga el usuario a Actualizar
+            if (d.getId() != null && d.getId() > 0) { // si la direccion tiene un id la actualizamos
+                this.direccionService.updateDireccion(d.getId(), d);
+            } else { // sino creamos una nueva direccion
+                this.direccionService.save(d);
+            }
+
+            // se verifica si la direccion esta o no en la lista de direcciones
+            if (!updatedUsuario.getDirecciones().contains(d)) {
+                updatedUsuario.getDirecciones().add(d); // si no esta la agregamos
+            }
+        }
+        return this.repository.save(updatedUsuario);
+    }
+
+    public Usuario createUsuario(Usuario us) {
+        if (us.getCorreo() == null || "".equals(us.getCorreo()) || us.getCorreo().isEmpty()) {
+            throw new InvalidEntityException("El correo es un campo obligatorio.");
+        }
+        if (us.getDirecciones() == null || us.getDirecciones().isEmpty()) {
+            throw new InvalidEntityException("El domicilio es un campo obligatorio");
+        }
+        if (us.getNroTelefono() == null || us.getNroTelefono().isEmpty()) {
+            throw new InvalidEntityException("El número de teléfono es un campo obligatorio");
+        }
+        Optional<Usuario> existingUs = this.repository.findByCorreo(us.getCorreo());
+        if (existingUs.isPresent()) {
+            throw new InvalidEntityException("Ya existe un usuario con el mismo correo");
+        }
+
+        validarContrasenia(us.getContrasenia());
+        validarNumeroTelefono(us.getNroTelefono());
+
+        return this.repository.save(us);
+
     }
 
     @Override
     public void deleteById(Long id) {
-        if(this.repository.existsById(id)){
+        if (this.repository.existsById(id)) {
             this.repository.deleteById(id);
-        }else {
+        } else {
             throw new ResourceNotFoundException("Usuario no encontrado con id: " + id);
         }
     }
-    
-    public Usuario iniciarSesion(iniciarSesionRq rq){
+
+    public Usuario iniciarSesion(iniciarSesionRq rq) {
         Optional<Usuario> opUsuario = this.repository.findByCorreo(rq.getCorreo());
-        if(opUsuario.isPresent()){
+        if (opUsuario.isPresent()) {
             Usuario us = opUsuario.get();
-            if(rq.getContrasenia().equals(us.getContrasenia())){
-                return us;
+            if (rq.getContrasenia().equals(us.getContrasenia())) {
+                return us; // Aquí el rol viene asociado al usuario
             } else {
-                throw new ResourceNotFoundException("contraseña incorrecta");
+                throw new ResourceNotFoundException("Contraseña incorrecta");
             }
-        } else{
-            throw new ResourceNotFoundException("Usuario incorrecto ");
+        } else {
+            throw new ResourceNotFoundException("Usuario incorrecto");
         }
     }
-    
-    //==============================================================
-    
+
+    // ==============================================================
+
     @Override
     public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> S saveAndFlush(S entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> List<S> saveAllAndFlush(Iterable<S> entities) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void deleteAllInBatch(Iterable<Usuario> entities) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void deleteAllByIdInBatch(Iterable<Long> ids) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void deleteAllInBatch() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Usuario getOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Usuario getReferenceById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> List<S> findAll(Example<S> example) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> List<S> findAll(Example<S> example, Sort sort) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> List<S> saveAll(Iterable<S> entities) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public List<Usuario> findAllById(Iterable<Long> ids) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> S save(S entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public boolean existsById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public long count() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void delete(Usuario entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void deleteAllById(Iterable<? extends Long> ids) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void deleteAll(Iterable<? extends Usuario> entities) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void deleteAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public List<Usuario> findAll(Sort sort) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Page<Usuario> findAll(Pageable pageable) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> Optional<S> findOne(Example<S> example) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> Page<S> findAll(Example<S> example, Pageable pageable) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> long count(Example<S> example) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public <S extends Usuario> boolean exists(Example<S> example) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public <S extends Usuario, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public <S extends Usuario, R> R findBy(Example<S> example,
+            Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Optional<Usuario> findByCorreo(String correo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

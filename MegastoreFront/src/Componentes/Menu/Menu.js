@@ -66,15 +66,7 @@ function Menu({ isVisible, toggleSidebar }) {
                             Sucursales
                         </Link>
                     </li>
-                    <li>
-                        <div>
-                            <li><Link to="/LoginAdmin">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-geo-alt" viewBox="0 0 16 16">
-                                    <path d="M8 0a4 4 0 0 0-4 4c0 2.14 1.373 4.236 3.252 5.963 1.248 1.356 2.57 2.63 3.748 4.037A.5.5 0 0 0 12 13c1.04 0 2.065-.615 3.128-1.763A6.15 6.15 0 0 0 16 9c0-3.236-4-9-8-9zm0 12a.5.5 0 0 0-.5.5 1.5 1.5 0 0 0 1 1.415A1.5 1.5 0 0 0 8 14.5a.5.5 0 0 0-.5-.5z" />
-                                </svg>
-                                Ingreso como administrador</Link>
-                            </li>
-                        </div>
+                    <li>  
                         <li><button>Editar Perfil</button></li>
                     </li>
                 </ul>

@@ -1,3 +1,4 @@
+/*
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginAdmin.css'; // Archivo CSS para estilos, si lo necesitas
@@ -9,9 +10,10 @@ const LoginAdmin = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
+        /*
         // Verificación de las credenciales
         if (username === 'admin' && password === 'admin') {
             // Redirigir a la página de administración si es admin
@@ -21,6 +23,38 @@ const LoginAdmin = () => {
             setError('Usuario o contraseña incorrectos');
         }
     };
+        const requestBody = {
+            correo: username,
+            contrasenia: password
+        };
+
+        try {
+            // Enviar la solicitud al backend (cambia la URL por la correcta)
+            const response = await fetch('http://localhost:8080/usuario/iniciarSesion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody),
+            });
+
+            // Si la respuesta es exitosa, redirigir a /admin
+            if (response.ok) {
+                const userData = await response.json();
+                if (userData && userData.rol === 'admin') {
+                    navigate('/admin');
+                } else {
+                    setError('No tienes permiso de administrador');
+                }
+            } else {
+                setError('Usuario o contraseña incorrectos');
+            }
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            setError('Hubo un problema al conectar con el servidor');
+        }
+    };
+        
 
     return (
         <div className="login-container">
@@ -60,3 +94,4 @@ const LoginAdmin = () => {
 };
 
 export default LoginAdmin;
+*/
