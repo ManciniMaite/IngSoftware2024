@@ -1,0 +1,72 @@
+.actualizar-btn-pedidosAdmin {
+    background-color: #5bf47f5b;
+  }
+  
+  .actualizar-btn-pedidosAdmin:hover {
+    background-color: #35c15472;
+  }
+  .detalles-btn-pedidosAdmin {
+    background-color: #fcf817c0;
+  }
+  
+  .detalles-btn-pedidosAdmin:hover {
+    background-color: #e2e666ad;
+  }
+  
+  .confirmacion-cambio {
+    position: fixed; /* Fija el cartel por encima del contenido */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para un verdadero centrado */
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra para mayor visibilidad */
+}
+ 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+  z-index: 999; /* Justo por debajo del cartel */
+}
+  
+  .confirmar-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 6px;
+    padding-left: 5px;  /* Reduce el espacio del lado izquierdo */
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 0px;
+    
+  }
+  
+  .confirmar-btn:hover {
+    background-color: #218838;
+  }
+  
+  .cancelar-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 6px;
+    padding-left: 5px;  /* Reduce el espacio del lado izquierdo */
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  
+  .cancelar-btn:hover {
+    background-color: #c82333;
+  }
+  
+  

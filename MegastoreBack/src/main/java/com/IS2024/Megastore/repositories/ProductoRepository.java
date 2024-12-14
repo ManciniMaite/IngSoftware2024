@@ -4,12 +4,24 @@
  */
 package com.IS2024.Megastore.repositories;
 
-import com.IS2024.Megastore.entities.Pedido;
+import com.IS2024.Megastore.entities.Producto;
+
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 /**
  *
  * @author maite
  */
-public interface ProductoRepository extends JpaRepository<Pedido,Long> {
-    
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+    Optional<Producto> findByCodigo(String codigo);
+
+    @Query("SELECT p FROM Producto p LEFT JOIN FETCH p.variantes v WHERE p.id = :id")
+    Producto findByIdWithVariantes(@Param("id") Long id);
+
+    List<Producto> findByPrecioLessThanEqual(Double precio);
+
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import java.util.List;
@@ -27,6 +28,8 @@ public class Producto {
     private Long id;
     private String nombre;
     private int stock;
+    private long precio;
+    private String codigo;
     @ManyToOne
     @JoinColumn(name="id_categoria", nullable=false)
     private CategoriaProducto categoria;
@@ -37,4 +40,6 @@ public class Producto {
         inverseJoinColumns = @JoinColumn(name = "id_variante")
     )
     private List<VarianteProducto> variantes;
+    @Lob 
+    private String foto;
 }

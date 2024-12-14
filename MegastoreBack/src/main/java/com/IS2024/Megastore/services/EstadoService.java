@@ -46,6 +46,7 @@ public class EstadoService {
         if (existingEstado.isPresent()) {
             Estado updatedEstado = existingEstado.get();
             updatedEstado.setNombre(estadoDetails.getNombre());
+            updatedEstado.setCodigo(estadoDetails.getCodigo());
 
             return estadoRepository.save(updatedEstado);
         } else {
@@ -59,5 +60,9 @@ public class EstadoService {
         } else {
             throw new ResourceNotFoundException("Estado no encontrado con id: " + id);
         }
+    }
+    
+    public Optional<Estado> findByCodigo(String codigo){
+        return this.estadoRepository.findByCodigo(codigo);
     }
 }

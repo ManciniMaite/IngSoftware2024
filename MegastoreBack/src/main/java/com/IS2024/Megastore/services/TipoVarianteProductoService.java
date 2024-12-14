@@ -64,12 +64,17 @@ public class TipoVarianteProductoService implements TipoVarianteProductoReposito
     }
     
     public TipoVarianteProducto createTipoVarianteProducto(TipoVarianteProducto tipoVarianteProducto){
-         Optional<TipoVarianteProducto> existTipo = this.repository.findByCodigo(tipoVarianteProducto.getCodigo());
+        if(!tipoVarianteProducto.getCodigo().isEmpty()){
+            Optional<TipoVarianteProducto> existTipo = this.repository.findByCodigo(tipoVarianteProducto.getCodigo());
             if(existTipo.isPresent()){
                 throw new InvalidEntityException("Ya existe un tipo variante con el mismo codigo");
             } else {
                return this.repository.save(tipoVarianteProducto);
             }
+        } else {
+            throw new InvalidEntityException("El codigo es un campo obligatorio");
+        }
+         
         
     }
 

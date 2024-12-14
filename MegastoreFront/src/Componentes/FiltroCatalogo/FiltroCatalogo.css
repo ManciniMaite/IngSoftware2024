@@ -1,0 +1,69 @@
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre elementos */
+    flex-wrap: nowrap; /* No permite que los filtros se envuelvan */
+    margin-left: 80px; /* Ajusta el margen izquierdo según sea necesario */
+    position: sticky; /* Mantiene el contenedor fijo al hacer scroll */
+    top: 0; /* Fija el contenedor en la parte superior */
+    background:transparent; /* Fondo blanco para destacar los filtros */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+    padding: 10px 0; /* Espaciado alrededor de los filtros */
+}
+
+.filter-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0; /* Elimina el padding extra */
+    margin-right: 10px; /* Espacio a la derecha del botón */
+    cursor: pointer;
+}
+
+.filter-content {
+    display: flex;
+    align-items: center;
+}
+
+.filter-logo {
+    margin-right: 5px; /* Espacio entre el icono y los filtros */
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row; /* Asegura que el label y el select/checkbox estén en fila */
+    margin-right: 20px; /* Espacio entre elementos de filtro */
+}
+
+.filter-item label {
+    margin-right: 10px; /* Espacio entre el label y el select/checkbox */
+}
+
+.price-select, .color-select, .category-select {
+    width: 150px; /* Asegura un ancho constante */
+}
+
+.color-select, .category-select {
+    padding: 5px; /* Espaciado interno */
+    font-size: inherit; /* Mantiene el tamaño de la fuente coherente */
+}
+
+.filter-item select {
+    font-size: inherit; /* Asegura que todos los select tengan el mismo tamaño de letra */
+}
+
+.reset-filters-button {
+    background-color: #ff4d4d; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    margin-top: 10px; /* Espacio superior */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.reset-filters-button:hover {
+    background-color: #ff1a1a; /* Color de fondo al pasar el mouse */
+}

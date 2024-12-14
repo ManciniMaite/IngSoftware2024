@@ -5,6 +5,7 @@
 package com.IS2024.Megastore.repositories;
 
 import com.IS2024.Megastore.entities.Estado;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author maite
  */
 public interface EstadoRepository extends JpaRepository<Estado,Long> {
-    
+    Optional<Estado> findByCodigo(String codigo);
 }

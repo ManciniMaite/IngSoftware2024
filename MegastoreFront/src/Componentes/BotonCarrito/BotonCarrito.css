@@ -1,0 +1,24 @@
+.button .carrito-button{
+    display: grid;
+}.button {
+    position: absolute;
+    top: 10px;
+    right: 60px; /* Ajusta esto según sea necesario */
+}
+.carrito-button {
+    background: transparent; /* Sin fondo */
+    border: none; /* Sin borde */
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    color: #333; /* Color del texto del botón */
+}
+
+.carrito-button svg {
+    fill: #333; /* Color del ícono del botón */
+    transition: fill 0.3s ease; /* Transición suave en hover */
+}
+
+.carrito-button:hover svg {
+    fill: #555; /* Cambio de color cuando el botón se sobrevuela */
+}

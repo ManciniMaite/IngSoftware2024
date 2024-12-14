@@ -1,0 +1,93 @@
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px 20px; */
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .botones-cabecera {
+    display: flex;
+    align-items: center;
+  }
+  
+  .carrito-button {
+    display: flex;
+    align-items: center;
+    left: 60px;
+    top: -5px;
+    text-decoration: none;
+    color: #333;
+    position: relative;
+  }
+  
+  .cart-count {
+    background-color: red;
+    color: rgb(223, 76, 76);
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
+  
+  
+  .user-info-cabecera{
+    text-align: right;    
+  }
+  .user-info-cabecera span{
+    display: block;
+    font-size: 16px;
+    position: absolute;
+    top: 45px;
+    right: 60px;
+
+  }
+  .carrito-icon-cabecera{
+    position: absolute;
+    top: 10px;
+    right:20px;
+    padding: 10px;
+    color: #333;
+  }
+
+
+header {
+    position: absolute; /* Mantiene la cabecera fija en la parte superior */
+    top: 0; /* Pegado al borde superior */
+    left: 0; /* Pegado al borde izquierdo */
+    width: 100%; /* Ocupa todo el ancho */
+    height: 80px;
+    background-image:url('../../Elementos/imagen-cabecera.jpg'); /* Color de fondo */
+    background-size: cover; /* Asegúrate de que la imagen cubra todo el espacio */
+    background-position: center; /* Centra la imagen */
+    z-index: 100; /* Asegura que esté encima de otros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de profundidad */
+}
+
+.catalog-container {
+    margin-top: 100px; /* Da un margen superior para que no se superponga con la cabecera */
+}
+
+/* Estilo para el texto en la cabecera */
+header p {
+    margin-top:20px; /* Elimina márgenes por defecto */
+    font-size: 18px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    
+}
+.header-image {
+    height: 50px; /* Ajusta la altura de la imagen según sea necesario */
+    width:150px;
+    height: 100px;
+}
+

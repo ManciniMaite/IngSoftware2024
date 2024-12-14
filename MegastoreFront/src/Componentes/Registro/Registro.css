@@ -1,0 +1,384 @@
+.register-container {
+  padding: 20px;
+  text-align: center;
+  margin-top: 80px;
+  overflow: hidden;
+}
+.register-container h1{
+  margin-bottom: 0px;
+}
+.form-registro{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+}
+
+.button-group-register button {
+  margin: 0px 3px; /* Margen horizontal entre botones */
+  border-radius: 4px; /* Asegúrate de que mantengan esquinas redondeadas */
+  cursor: pointer; /* Muestra el cursor de puntero */
+  width: 80px;
+  height: 40px;
+  padding: 5px 10px;
+  background-color: rgb(180, 177, 177);
+  margin-top: 10px;
+  
+ 
+}
+.button-group-register button:hover{
+  background-color: #f9cd67;
+
+ 
+}
+.register-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: -5px;
+  margin-right: 40px;
+  margin-left: -20px;
+}
+
+.register-group label {
+  flex: 1;
+  text-align: right;
+  padding-right: 10px;
+  margin-top: 25px;
+  white-space: nowrap;
+  display: inline;
+}
+
+.register-group input {
+  flex: 2;
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 10px 5px;
+  margin-left: 10px;
+}
+
+
+/* Grupo de dirección y altura, con el botón "Eliminar" alineado */
+.direccion-envio-linea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribuye el espacio de manera uniforme */
+  margin-bottom: 10px;
+  
+}
+
+.calle-altura{
+  display: flex;
+  margin-bottom: 0px;
+  margin-left: 150px;
+  position: absolute;
+  
+}
+
+.calle-altura input {
+
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 14px 12px;
+  margin-right: 10px;
+  margin-top: -5px;
+  height: 5px;
+   
+  
+}
+
+
+.direccion-envio-group label{
+  flex: 1;
+  text-align: right;
+  padding-right: 0px;
+  margin-right: 20px;
+  margin-top: 15px;
+ 
+  
+}
+
+
+/* Botón para agregar dirección en una línea separada */
+.direccion-envio-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  margin-right: 315px;
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+/*Confirmar Contraseña*/
+.register-group-confContraseña {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  margin-left: -120px;
+}
+
+.register-group-confContraseña label {
+  flex: 1;
+  text-align: right;
+  padding-right: 10px;
+  margin-top: 25px;
+  white-space: nowrap;
+  display: inline;
+
+}
+
+.register-group-confContraseña input {
+  flex: 2;
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 10px 13px;
+  margin-left: 10px;
+}
+
+/*Contraseña*/
+.register-group-contraseña {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 60px;
+  margin-left: -15px;
+  margin-top: 5px;
+  
+  
+  
+}
+
+.register-group-contraseña label {
+  flex: 1;
+  text-align: right;
+  padding-right: 10px;
+  margin-top: 25px;
+  white-space: nowrap;
+  display: inline;
+
+}
+
+.register-group-contraseña input {
+ 
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 10px 5px;
+  
+}
+/*Email*/
+.register-group-email {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  margin-left: -15px;
+  margin-top: 5px;
+}
+
+.register-group-email label {
+  flex: 1;
+  text-align: right;
+  padding-right: 10px;
+  margin-top: 35px;
+  white-space: nowrap;
+  display: inline;
+
+}
+
+.register-group-email input {
+  flex: 2;
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 10px 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* Nombre*/
+.register-group-nombre {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  margin-left: -15px;
+}
+
+.register-group-nombre label {
+  flex: 1;
+  text-align: right;
+  padding-right: 10px;
+  margin-top: 25px;
+  white-space: nowrap;
+  display: inline;
+
+}
+
+.register-group-nombre input {
+  flex: 2;
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 10px 5px;
+  margin-left: 10px;
+}
+/* Apellido*/
+.register-group-apellido {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  margin-left: -20px;
+}
+
+.register-group-apellido label {
+  flex: 1;
+  text-align: right;
+  padding-right: 10px;
+  margin-top: 25px;
+  white-space: nowrap;
+  display: inline;
+
+}
+
+.register-group-apellido input {
+  flex: 2;
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 10px 5px;
+  margin-left: 10px;
+}
+/* Telefono*/
+.register-group-telefono {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  margin-left: -20px;
+}
+
+.register-group-telefono label {
+  flex: 1;
+  text-align: right;
+  padding-right: 10px;
+  margin-top: 25px;
+  white-space: nowrap; 
+  display: inline;
+
+}
+
+.register-group-telefono input {
+  flex: 2;
+  border: none;
+  border-bottom: 1px solid rgb(148, 142, 142);
+  background: transparent;
+  outline: none;
+  padding: 10px 5px;
+  margin-left: 10px;
+}
+
+
+
+/*lista de direcciones*/
+
+.address-list {
+  border: none;
+  background-color: #b0a8a8;
+  height: 180px; /* Ajusta para hacer el contenedor más alto */
+  border-radius: 4px;
+  overflow-y: auto;
+  margin-top: 10px;
+  z-index: 1000;
+  width: 190px;
+
+   /* Cambiar la posición del cuadro */
+   position: absolute; /* Cambiar a 'absolute' o 'fixed' si lo prefieres */
+   top: 195px; /* Mueve el cuadro hacia abajo */
+   left: 1080px; /* Mueve el cuadro hacia la derecha */
+}
+
+
+/* Estilos de desplazamiento para la lista de direcciones */
+.address-list::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento (más fina) */
+  height: 8px; /* Ancho de la barra de desplazamiento horizontal (más fina) */
+}
+
+.address-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color del fondo */
+  border-radius: 8px; /* Esquinas más redondeadas */
+}
+
+.address-list::-webkit-scrollbar-thumb {
+  background: #989595; /* Color del pulgar */
+  border-radius: 15px; /* Esquinas más redondeadas */
+}
+
+.address-list::-webkit-scrollbar-thumb:hover {
+  background: #b3b0b0; /* Color del pulgar al pasar el mouse */
+}
+
+.address-text {
+  flex: 10px; /* Deja que el texto de la dirección ocupe el espacio disponible */
+}
+
+.address-item {
+  display: flex;
+  justify-content: space-between; /* Espacio entre la dirección y el botón */
+  padding: 5px;
+  border-bottom: 1px solid #ccc; /* Separador entre direcciones */
+  white-space: nowrap;
+  
+}
+.address-item span {
+  margin-right: 10px; /* Espacio entre "calle" y "altura" */
+  display: row;
+}
+
+
+
+/*pantalla responsive*/
+@media (max-width: 600px) {
+  .register-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .register-group label {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .address-list {
+    width: 100%; /* Ancho completo en pantallas más pequeñas */
+    left: 0; /* Ajusta la posición */
+  }
+}
+
+

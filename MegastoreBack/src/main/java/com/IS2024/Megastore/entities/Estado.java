@@ -21,4 +21,5 @@ public class Estado {
     @Id
     private Long id;
     private String nombre;
+    private String codigo;
 }

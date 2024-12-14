@@ -1,0 +1,64 @@
+.pedidos-container {
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    display: flex;
+    flex-direction: column; /* Alinea verticalmente el contenido */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+  }
+  
+  .titulo-logo-container {
+    margin-bottom: 20px; /* Espacio entre el título y la tabla */
+    text-align: center;
+
+  }
+  
+  .titulo-logo {
+    display: flex;
+    flex-direction: row; /* Cambia a fila para alinear horizontalmente */
+    justify-content: center; /* Centra ambos horizontalmente */
+    align-items: center; /* Alinea ambos verticalmente */
+  }
+  
+  .titulo-logo svg {
+    margin-right: 20px; /* Añade espacio entre el logo y el título */
+    transform: translateY(0px); /* Ajusta el valor según sea necesario */
+  }
+  
+  
+  .pedidos-titulo {
+    font-size: 24px; /* Ajusta el tamaño del título */
+    margin-top: 10px;
+  }
+  
+  .pedidos-tabla {
+    width: 70%; /* Ajusta el ancho de la tabla */
+    border-collapse: collapse;
+    text-align: center; /* Centra el texto en todas las celdas */
+  }
+  
+  .pedidos-tabla th, .pedidos-tabla td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    font-size: 18px; /* Agranda la letra de los datos */
+  }
+  
+  .pedidos-tabla th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    font-size: 20px; /* Agranda la letra de los títulos */
+  }
+  
+  .pedidos-tabla tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  
+  
+  
+  .pedidos-tabla td {
+    vertical-align: middle;
+    padding: 10px;
+  }
+  .cancelar-btn-pedidos{
+    background-color: red;
+  }

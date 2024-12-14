@@ -1,0 +1,45 @@
+/* Asegura que el cuerpo y la página ocupen el 100% de la ventana del navegador */
+
+  
+  /* Contenedor principal para centrar el contenido */
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ocupa toda la altura de la pantalla */
+    text-align: center;
+    background-color:transparent;
+    overflow: hidden;
+  }
+  
+
+ 
+  
+  /* Estilo para el contenido cuando el sidebar está visible o no */
+  .content {
+    width: 100%;
+    
+  }
+  
+  .with-sidebar {
+    margin-left: 0; /* Ajusta según el ancho del sidebar */
+  }
+  
+  .full-width {
+    margin-left: 0;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

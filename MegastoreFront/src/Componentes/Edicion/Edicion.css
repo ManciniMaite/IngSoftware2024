@@ -1,0 +1,89 @@
+/* EditProfile.css */
+  .input-group-edicion {
+    display: block;
+    position: absolute;
+    width: 100%;
+    
+    
+  }
+  .perfil-container-edicion {
+    align-items: center;
+    text-align: center; /* Centra el texto */
+    top: 260px; /* Ajusta este valor según sea necesario */
+    position: absolute;
+    left: 590px;
+    gap:15px;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .titulo-edicion{
+    position: absolute;
+    top: 100px;
+    left: 650px;
+    display: block;
+    
+  }
+  
+  
+  .input-group-edicion label {
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el campo */
+  }
+  
+  .input-group-edicion input {
+    border: none; /* Sin borde */
+    border-bottom: 2px solid black; /* Borde inferior negro */
+    background: transparent; /* Sin fondo */
+    outline: none; /* Sin contorno al hacer clic */
+    padding: 5px; /* Espacio interno */
+    width: 100%; /* Ancho completo */
+  }
+  
+  .save-button {
+    background-color: #a6a6a6;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .save-button:hover {
+    background-color: #f9cd67;
+  }
+  
+  
+  .calle-altura-edicion {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .calle-input-edicion, .altura-input-edicion {
+    width: 120px;
+    padding: 5px;
+  }
+  
+  .add-button {
+    background-color: #28a745;
+    color: black;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: #dc3545;
+    color:black;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+ .aceptar-edicion{
+  margin-right: 10px;
+ }
+ .editar-edicion{
+
+ }
+ 

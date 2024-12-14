@@ -1,0 +1,135 @@
+/* Estilos generales de la barra lateral */
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 250px; /* Ancho de la barra lateral cuando está visible */
+    background-color: #f8f9fa;
+    transition: margin-left 0.6s ease;
+    z-index: 10000000000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+  }
+  .menu{
+    overflow: hidden; /* Evita las barras de desplazamiento */
+  }
+   
+  /* Cuando la barra lateral está oculta, la movemos fuera de la pantalla */
+  .sidebar.hidden {
+    margin-left: -300px; /* Oculta completamente la barra lateral */
+  }
+  
+  /* Cuando la barra lateral está visible */
+  .sidebar.visible {
+    margin-left: 0;
+    margin-top:0px;
+  }
+  
+  /* Estilos del botón que despliega el menú (logo del menú) */
+  .toggle-button {
+    position: absolute; /* Posición fija para que siempre esté visible */
+    top: 15px;
+    left: 10px; /* Ajusta la posición del botón para que esté fuera del sidebar */
+    z-index: 1001;
+    background: none; /* Sin fondo */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: left 0.6s ease;
+  }
+  
+  /* Botón cuando el menú está cerrado */
+  .sidebar.hidden .toggle-button {
+    left: -70px; /* Asegura que el botón siempre esté visible cuando el menú está cerrado */
+    top: 25px;
+    width: 80%;
+  }
+  
+  /* Botón cuando el menú está abierto */
+  .sidebar.visible .toggle-button {
+    left: -200px; /* Mueve el botón ligeramente cuando el menú está abierto */
+    top: 25px; 
+  }
+  
+  /* Estilo para el logo del menú */
+  .menu-logo {
+    width: 30px;
+    height: 30px;
+    transition: fill 0.6s ease; /* Transición para el cambio de color */
+    margin-left: 400px;
+  }
+  
+  /* Lista de navegación dentro del menú */
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 50px 0 0 0; /* Deja espacio arriba para el logo */
+  }
+  
+  .sidebar ul li {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar ul li a svg {
+    margin-right: 10px;
+    fill: currentColor;
+  }
+  
+  /* Fondo transparente cuando la barra está cerrada (solo muestra el logo) */
+  .sidebar.hidden .toggle-button {
+    background: none; /* Sin fondo */
+  }
+  
+  /* Ajuste del fondo del botón cuando la barra está abierta */
+  .sidebar.visible .toggle-button {
+    background: none; /* Sin fondo */
+  }
+  
+  /* Estilos del contenido que está en la página principal */
+  .content {
+      margin-left: 0; /* Elimina el desplazamiento */
+      transition: none; /* Opcional: elimina la animación del margen */
+    
+  }
+  
+  .content.closed {
+    margin-left: 0; /* El contenido ocupa toda la pantalla cuando el menú está cerrado */
+  }
+  
+  /* Media query para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+  
+    .sidebar.hidden {
+      margin-left: -200px;
+    }
+  
+    .content {
+      margin-left: 200px;
+    }
+  
+    .content.closed {
+      margin-left: 0;
+    }
+  
+    .toggle-button {
+      left: 10px; /* Ajuste para pantallas pequeñas */
+    }
+  
+    .sidebar.visible .toggle-button {
+      left: 210px;
+    }
+  }
+  

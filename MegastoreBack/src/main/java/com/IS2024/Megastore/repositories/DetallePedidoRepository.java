@@ -4,7 +4,6 @@
  */
 package com.IS2024.Megastore.repositories;
 
-
 import com.IS2024.Megastore.entities.DetallePedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,5 +12,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author maite
  */
 public interface DetallePedidoRepository extends JpaRepository<DetallePedido, Long> {
-    
+
 }
