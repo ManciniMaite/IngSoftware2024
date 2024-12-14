@@ -15,6 +15,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.sql.Date;
 import java.util.List;
+
+import com.IS2024.Megastore.Exceptions.InvalidEntityException;
+
 import lombok.Data;
 
 /**
@@ -31,11 +34,45 @@ public class Pedido {
     @JoinColumn(name = "id_pedido") // Esta columna irá en DetallePedido
     private List<DetallePedido> detallesPedido;
     @ManyToOne
-    @JoinColumn(name="id_usuario", nullable=false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
     private Date fechaPedido;
     @ManyToOne
-    @JoinColumn(name="id_estado", nullable=false)
+    @JoinColumn(name = "id_estado", nullable = false)
     private Estado estado;
     private long precio;
+    private int cantidad;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto producto;
+
+    public Pedido() {
+
+    }
+
+    public List<DetallePedido> getDetallePedido() {
+        return detallesPedido;
+    }
+
+    public void setDetallesPedido(List<DetallePedido> detallesPedido) {
+        this.detallesPedido = detallesPedido;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
 }
