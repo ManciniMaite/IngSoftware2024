@@ -160,6 +160,19 @@ public class UsuarioService implements UsuarioRepository {
         }
     }
 
+    public void validarContrasenia(String contrasenia) {
+        if (contrasenia == null || contrasenia.length() >= 8 || contrasenia.length() <= 20) {
+            throw new InvalidEntityException("La contraseña debe tener entre 8 y 20 caracteres");
+        }
+
+    }
+
+    public void validarNumeroTelefono(String nroTelefono) {
+        if (nroTelefono == null || !nroTelefono.matches("^\\d{10}$")) {
+            throw new InvalidEntityException("El formato de numero de telefono no es correcto");
+        }
+    }
+
     // ==============================================================
 
     @Override

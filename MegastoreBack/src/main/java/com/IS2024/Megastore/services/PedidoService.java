@@ -4,7 +4,6 @@
  */
 package com.IS2024.Megastore.services;
 
-import java.time.LocalDateTime;
 import com.IS2024.Megastore.Exceptions.InvalidEntityException;
 import com.IS2024.Megastore.Exceptions.ResourceNotFoundException;
 import com.IS2024.Megastore.entities.DetallePedido;
@@ -22,8 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +47,7 @@ public class PedidoService {
         return this.repository.findById(id);
     }
 
+    @SuppressWarnings("deprecation")
     public Pedido getById(Long id) {
         return this.repository.getById(id);
     }
@@ -221,11 +219,13 @@ public class PedidoService {
                             throw new IllegalStateException("No se puede pasar a pendiente");
                         }
                         break;
-                    case "EP": // solo se puede pasar desde el estao Pendiente
-                        if (p.getEstado() == null && !p.getEstado().getCodigo().equals("PN")) {
+                    case "EP":
+                        System.out.println("Estado actual: " + (p.getEstado() == null ? "null" : p.getEstado().getCodigo()));
+                        if (p.getEstado() == null || !p.getEstado().getCodigo().equals("PN")) {
                             throw new IllegalStateException("No se puede pasar a enPreparacion");
                         }
                         break;
+                    
                     case "ET": // solo se puede pasar desde enPreparacion
                         if (p.getEstado() == null && !p.getEstado().getCodigo().equals("EP")) {
                             throw new IllegalStateException("No se puede entregar");
@@ -339,6 +339,21 @@ public class PedidoService {
         resultados.sort((a, b) -> Integer.compare((int) b.get("cantidad"), (int) a.get("cantidad")));
 
         return resultados;
+    }
+
+     // CANCELAR PEDIDO
+     public void cancelarPedido(Long pedidoId) {
+        Pedido pedido = this.repository.findById(pedidoId)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado con id " + pedidoId));
+        if ("en preparación".equals(pedido.getEstado().getCodigo())
+                || "pendiente".equals(pedido.getEstado().getCodigo())) {
+            Estado estadoCancelado = this.serviceEstado.findByCodigo("cancelado")
+                    .orElseThrow(() -> new ResourceNotFoundException("Estado 'cancelado' no encontrado"));
+            pedido.setEstado(estadoCancelado);
+            this.repository.save(pedido);
+        } else {
+            throw new InvalidEntityException("Solo se puede cancelar un pedido en estado 'preparación' o 'pendiente' ");
+        }
     }
 
 }
