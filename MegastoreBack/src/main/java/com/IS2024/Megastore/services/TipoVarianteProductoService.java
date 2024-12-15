@@ -31,16 +31,19 @@ public class TipoVarianteProductoService implements TipoVarianteProductoReposito
     private TipoVarianteProductoRepository repository;
 
     
+    @SuppressWarnings("null")
     @Override
     public Optional<TipoVarianteProducto> findById(Long id) {
         return this.repository.findById(id);
     }
     
+    @SuppressWarnings({ "null", "deprecation" })
     @Override
     public TipoVarianteProducto getById(Long id) {
         return this.repository.getById(id);
     }
     
+    @SuppressWarnings("null")
     @Override
     public List<TipoVarianteProducto> findAll() {
         return this.repository.findAll();
@@ -79,7 +82,7 @@ public class TipoVarianteProductoService implements TipoVarianteProductoReposito
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(@SuppressWarnings("null") Long id) {
         if(this.repository.existsById(id)){
             this.repository.deleteById(id);
         }else {
@@ -92,23 +95,25 @@ public class TipoVarianteProductoService implements TipoVarianteProductoReposito
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> S saveAndFlush(S entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> List<S> saveAllAndFlush(Iterable<S> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<TipoVarianteProducto> entities) {
+    public void deleteAllInBatch(@SuppressWarnings("null") Iterable<TipoVarianteProducto> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> ids) {
+    public void deleteAllByIdInBatch(@SuppressWarnings("null") Iterable<Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -117,43 +122,50 @@ public class TipoVarianteProductoService implements TipoVarianteProductoReposito
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public TipoVarianteProducto getOne(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public TipoVarianteProducto getReferenceById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> List<S> findAll(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> List<S> findAll(Example<S> example, Sort sort) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> List<S> saveAll(Iterable<S> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public List<TipoVarianteProducto> findAllById(Iterable<Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> S save(S entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean existsById(Long id) {
+    public boolean existsById(@SuppressWarnings("null") Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -163,17 +175,17 @@ public class TipoVarianteProductoService implements TipoVarianteProductoReposito
     }
 
     @Override
-    public void delete(TipoVarianteProducto entity) {
+    public void delete(@SuppressWarnings("null") TipoVarianteProducto entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> ids) {
+    public void deleteAllById(@SuppressWarnings("null") Iterable<? extends Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void deleteAll(Iterable<? extends TipoVarianteProducto> entities) {
+    public void deleteAll(@SuppressWarnings("null") Iterable<? extends TipoVarianteProducto> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -182,36 +194,41 @@ public class TipoVarianteProductoService implements TipoVarianteProductoReposito
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public List<TipoVarianteProducto> findAll(Sort sort) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public Page<TipoVarianteProducto> findAll(Pageable pageable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> Optional<S> findOne(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto> Page<S> findAll(Example<S> example, Pageable pageable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public <S extends TipoVarianteProducto> long count(Example<S> example) {
+    public <S extends TipoVarianteProducto> long count(@SuppressWarnings("null") Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public <S extends TipoVarianteProducto> boolean exists(Example<S> example) {
+    public <S extends TipoVarianteProducto> boolean exists(@SuppressWarnings("null") Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends TipoVarianteProducto, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

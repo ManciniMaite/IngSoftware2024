@@ -7,8 +7,6 @@ package com.IS2024.Megastore.repositories;
 import com.IS2024.Megastore.entities.Pedido;
 import com.IS2024.Megastore.entities.Estado;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
-
 import java.time.LocalDate;
 import java.util.*;
 

@@ -27,16 +27,19 @@ public class DireccionService implements DireccionRepository {
     @Autowired
     private DireccionRepository direccionRepository;
 
+    @SuppressWarnings("null")
     @Override
     public Optional<Direccion> findById(Long id) {
         return this.direccionRepository.findById(id);
     }
 
+    @SuppressWarnings({ "null", "deprecation" })
     @Override
     public Direccion getById(Long id) {
         return this.direccionRepository.getById(id);
     }
 
+    @SuppressWarnings("null")
     @Override
     public List<Direccion> findAll() {
         return this.direccionRepository.findAll();
@@ -78,7 +81,7 @@ public class DireccionService implements DireccionRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(@SuppressWarnings("null") Long id) {
         if (this.direccionRepository.existsById(id)) {
             this.direccionRepository.deleteById(id);
         } else {
@@ -92,12 +95,14 @@ public class DireccionService implements DireccionRepository {
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> S saveAndFlush(S entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> List<S> saveAllAndFlush(Iterable<S> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
@@ -105,13 +110,13 @@ public class DireccionService implements DireccionRepository {
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<Direccion> entities) {
+    public void deleteAllInBatch(@SuppressWarnings("null") Iterable<Direccion> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> ids) {
+    public void deleteAllByIdInBatch(@SuppressWarnings("null") Iterable<Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -122,48 +127,51 @@ public class DireccionService implements DireccionRepository {
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public Direccion getOne(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public Direccion getReferenceById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> List<S> findAll(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> List<S> findAll(Example<S> example, Sort sort) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> List<S> saveAll(Iterable<S> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public List<Direccion> findAllById(Iterable<Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> S save(S entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public boolean existsById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
@@ -175,19 +183,19 @@ public class DireccionService implements DireccionRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public void delete(Direccion entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public void deleteAllById(Iterable<? extends Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public void deleteAll(Iterable<? extends Direccion> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
@@ -199,43 +207,43 @@ public class DireccionService implements DireccionRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public List<Direccion> findAll(Sort sort) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public Page<Direccion> findAll(Pageable pageable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> Optional<S> findOne(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> Page<S> findAll(Example<S> example, Pageable pageable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> long count(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion> boolean exists(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    @SuppressWarnings("null")
     @Override
     public <S extends Direccion, R> R findBy(Example<S> example,
             Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
