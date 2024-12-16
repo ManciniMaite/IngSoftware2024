@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 
@@ -21,9 +22,9 @@ import lombok.Data;
  * @author maite
  */
 
-@Data
-@Entity
-public class Usuario {
+ @Data
+ @Entity
+ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
@@ -31,12 +32,15 @@ public class Usuario {
     private String apellido;
     private String correo;
     private String contrasenia;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario")
-    private List<Direccion> direcciones;
+    private List<Direccion> direcciones = new ArrayList<>(); // Inicialización predeterminada
+
     private String nroTelefono;
+
     @ManyToOne
     @JoinColumn(name = "id_rol", nullable = false) // Asocia con la tabla Rol
     private Rol rol;
-
-}
+ }
+ 
