@@ -40,6 +40,7 @@ public class CategoriaProductoService {
         return this.categoriaRepository.findById(id);
     }
 
+    @SuppressWarnings("deprecation")
     public CategoriaProducto getById(Long id) {
         return this.categoriaRepository.getById(id);
     }

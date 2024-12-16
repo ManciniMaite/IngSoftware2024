@@ -13,8 +13,6 @@ import com.IS2024.Megastore.model.iniciarSesionRq;
 import com.IS2024.Megastore.repositories.RolRepository;
 import com.IS2024.Megastore.repositories.UsuarioRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -26,7 +24,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.Map;
 
 /**
  *
@@ -42,16 +39,18 @@ public class UsuarioService implements UsuarioRepository {
     @Autowired
     private RolRepository rolRepository;
 
+    @SuppressWarnings("null")
     @Override
     public Optional<Usuario> findById(Long id) {
         return this.repository.findById(id);
     }
-
+    @SuppressWarnings({ "null", "deprecation" })
     @Override
     public Usuario getById(Long id) {
         return this.repository.getById(id);
     }
 
+    @SuppressWarnings("null")
     @Override
     public List<Usuario> findAll() {
         return this.repository.findAll();
@@ -131,6 +130,7 @@ public class UsuarioService implements UsuarioRepository {
         }
     }
 
+    @SuppressWarnings("null")
     @Override
     public void deleteById(Long id) {
         if (this.repository.existsById(id)) {
@@ -160,6 +160,19 @@ public class UsuarioService implements UsuarioRepository {
         }
     }
 
+    public void validarContrasenia(String contrasenia) {
+        if (contrasenia == null || contrasenia.length() >= 8 || contrasenia.length() <= 20) {
+            throw new InvalidEntityException("La contraseña debe tener entre 8 y 20 caracteres");
+        }
+
+    }
+
+    public void validarNumeroTelefono(String nroTelefono) {
+        if (nroTelefono == null || !nroTelefono.matches("^\\d{10}$")) {
+            throw new InvalidEntityException("El formato de numero de telefono no es correcto");
+        }
+    }
+
     // ==============================================================
 
     @Override
@@ -168,24 +181,28 @@ public class UsuarioService implements UsuarioRepository {
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> S saveAndFlush(S entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> List<S> saveAllAndFlush(Iterable<S> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public void deleteAllInBatch(Iterable<Usuario> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public void deleteAllByIdInBatch(Iterable<Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
@@ -198,48 +215,56 @@ public class UsuarioService implements UsuarioRepository {
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public Usuario getOne(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public Usuario getReferenceById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> List<S> findAll(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> List<S> findAll(Example<S> example, Sort sort) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> List<S> saveAll(Iterable<S> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public List<Usuario> findAllById(Iterable<Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> S save(S entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public boolean existsById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
@@ -252,18 +277,21 @@ public class UsuarioService implements UsuarioRepository {
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public void delete(Usuario entity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public void deleteAllById(Iterable<? extends Long> ids) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public void deleteAll(Iterable<? extends Usuario> entities) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
@@ -276,42 +304,49 @@ public class UsuarioService implements UsuarioRepository {
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public List<Usuario> findAll(Sort sort) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public Page<Usuario> findAll(Pageable pageable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> Optional<S> findOne(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> Page<S> findAll(Example<S> example, Pageable pageable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> long count(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario> boolean exists(Example<S> example) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @SuppressWarnings("null")
     @Override
     public <S extends Usuario, R> R findBy(Example<S> example,
             Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {

@@ -6,7 +6,6 @@ package com.IS2024.Megastore.controller;
 
 import com.IS2024.Megastore.Exceptions.ResourceNotFoundException;
 import com.IS2024.Megastore.entities.DetallePedido;
-import com.IS2024.Megastore.entities.Direccion;
 import com.IS2024.Megastore.entities.Pedido;
 import com.IS2024.Megastore.services.PedidoService;
 

@@ -35,6 +35,7 @@ public class ProductoService {
         return this.repository.findById(id);
     }
 
+    @SuppressWarnings("deprecation")
     public Producto getById(Long id) {
         return this.repository.getById(id);
     }

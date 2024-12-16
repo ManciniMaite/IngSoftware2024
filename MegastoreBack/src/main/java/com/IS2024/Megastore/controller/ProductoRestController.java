@@ -8,7 +8,6 @@ import com.IS2024.Megastore.Exceptions.ResourceNotFoundException;
 import com.IS2024.Megastore.entities.CategoriaProducto;
 import com.IS2024.Megastore.entities.Producto;
 import com.IS2024.Megastore.entities.VarianteProducto;
-import com.IS2024.Megastore.repositories.ProductoRepository;
 import com.IS2024.Megastore.services.ProductoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  *

@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "d569fff2-2f4f-4068-b915-7a7e90d44180",
+		"name": "UsuarioRestController API",
+		"description": "Colección de pruebas para UsuarioRestController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17776275"
+	},
+	"item": [
+		{
+			"name": "CPS06 - Obtener todos los usuarios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/usuario/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPS07 - Obtener un usuario por ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/usuario/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPS08 - Crear un nuevo usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Juan\",\n    \"apellido\": \"Pérez\",\n    \"nroTelefono\": \"123456789\",\n    \"contrasenia\": \"12345\",\n    \"correo\": \"juan.perez@example.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuario/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPS09 - Actualizar un usuario",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Juan Actualizado\",\n    \"apellido\": \"Pérez\",\n    \"nroTelefono\": \"987654321\",\n    \"correo\": \"juan.perez@example.com\",\n    \"contrasenia\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuario/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPS10 - Eliminar un usuario por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/usuario/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPS11 - Iniciar sesión",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"juan.perez@example.com\",\n    \"contrasenia\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuario/iniciarSesion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"iniciarSesion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CPS12 - Obtener direcciones de un usuario",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/usuario/:userId/direcciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						":userId",
+						"direcciones"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

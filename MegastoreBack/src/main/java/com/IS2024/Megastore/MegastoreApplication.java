@@ -15,14 +15,12 @@ import com.IS2024.Megastore.repositories.UsuarioRepository;
 import com.IS2024.Megastore.repositories.CategoriaProductoRepository;
 import com.IS2024.Megastore.repositories.EstadoRepository;
 import com.IS2024.Megastore.repositories.ProductoRepository;
-import com.IS2024.Megastore.repositories.PedidoRepository;
 import com.IS2024.Megastore.repositories.VarianteProdutoRepository;
 import com.IS2024.Megastore.repositories.TipoVarianteProductoRepository;
 import com.IS2024.Megastore.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootApplication
 public class MegastoreApplication implements CommandLineRunner {

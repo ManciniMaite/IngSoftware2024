@@ -29,6 +29,7 @@ public class DetallePedidoService {
         return this.repository.findById(id);
     }
 
+    @SuppressWarnings("deprecation")
     public DetallePedido getById(Long id) {
         return this.repository.getById(id);
     }

@@ -1,9 +1,7 @@
 package com.IS2024.Megastore.services;
 
-import com.IS2024.Megastore.Exceptions.InvalidEntityException;
 import com.IS2024.Megastore.Exceptions.ResourceNotFoundException;
 import com.IS2024.Megastore.entities.VarianteProducto;
-import com.IS2024.Megastore.entities.Producto;
 import com.IS2024.Megastore.entities.TipoVarianteProducto;
 import com.IS2024.Megastore.repositories.VarianteProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,7 @@ public class VarianteProductoService {
         return this.repository.findById(id);
     }
 
+    @SuppressWarnings("deprecation")
     public VarianteProducto getById(Long id) {
         return this.repository.getById(id);
     }
