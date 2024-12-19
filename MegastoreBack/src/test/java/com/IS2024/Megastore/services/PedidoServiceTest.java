@@ -15,6 +15,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class PedidoServiceTest {
 
@@ -98,7 +101,8 @@ class PedidoServiceTest {
 
         Pedido pedido = new Pedido();
 
-        Exception exception = assertThrows(ResourceNotFoundException.class, () -> pedidoService.updatePedido(1L, pedido));
+        Exception exception = assertThrows(ResourceNotFoundException.class,
+                () -> pedidoService.updatePedido(1L, pedido));
         assertEquals("Pedido no encontrado con id: 1", exception.getMessage());
     }
 
@@ -141,7 +145,8 @@ class PedidoServiceTest {
         Mockito.when(pedidoRepository.findById(1L)).thenReturn(Optional.of(pedido));
         Mockito.when(estadoService.findByCodigo("EP")).thenReturn(Optional.of(estadoNuevo));
 
-        Exception exception = assertThrows(IllegalStateException.class, () -> pedidoService.actualizarEstado(pedido, "EP"));
+        Exception exception = assertThrows(IllegalStateException.class,
+                () -> pedidoService.actualizarEstado(pedido, "EP"));
         assertEquals("No se puede pasar a enPreparacion", exception.getMessage());
     }
 
@@ -157,7 +162,8 @@ class PedidoServiceTest {
         Mockito.when(pedidoRepository.findById(1L)).thenReturn(Optional.of(pedido));
         Mockito.when(estadoService.findByCodigo("EP")).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(ResourceNotFoundException.class, () -> pedidoService.actualizarEstado(pedido, "EP"));
+        Exception exception = assertThrows(ResourceNotFoundException.class,
+                () -> pedidoService.actualizarEstado(pedido, "EP"));
         assertEquals("Estado no encontrado con código: EP", exception.getMessage());
     }
 
@@ -165,29 +171,28 @@ class PedidoServiceTest {
     void testCancelarPedidoSuccess() {
         Pedido pedido = new Pedido();
         pedido.setId(1L);
-    
+
         // Estado inicial permitido
         Estado estadoActual = new Estado();
         estadoActual.setCodigo("pendiente"); // Cambiar a "pendiente" para coincidir con la lógica
         pedido.setEstado(estadoActual);
-    
+
         // Estado final
         Estado estadoCancelado = new Estado();
         estadoCancelado.setCodigo("cancelado");
-    
+
         // Configuración de los mocks
         Mockito.when(pedidoRepository.findById(1L)).thenReturn(Optional.of(pedido));
         Mockito.when(estadoService.findByCodigo("cancelado")).thenReturn(Optional.of(estadoCancelado));
         Mockito.when(pedidoRepository.save(any(Pedido.class))).thenAnswer(invocation -> invocation.getArgument(0));
-    
+
         // Ejecución del método
         pedidoService.cancelarPedido(1L);
-    
+
         // Verificaciones
         assertEquals("cancelado", pedido.getEstado().getCodigo()); // Verificar el estado actualizado
         Mockito.verify(pedidoRepository).save(pedido);
     }
-    
 
     @Test
     void testCancelarPedidoInvalidState() {
@@ -203,4 +208,91 @@ class PedidoServiceTest {
         Exception exception = assertThrows(InvalidEntityException.class, () -> pedidoService.cancelarPedido(1L));
         assertEquals("Solo se puede cancelar un pedido en estado 'preparación' o 'pendiente' ", exception.getMessage());
     }
+
+    /* CPU 7 cancelar pedido pendiente */
+
+    // caso pedido pendiente
+    @Test
+    void cancelarPedidoPendiente() {
+        Pedido pedido = new Pedido();
+        pedido.setId(1L);
+        Estado estadoPendiente = new Estado();
+        estadoPendiente.setCodigo("pendiente");
+        pedido.setEstado(estadoPendiente);
+
+        Estado estadoCancelado = new Estado();
+        estadoCancelado.setCodigo("cancelado");
+
+        // mockeo del repositorio y del servicio
+        Mockito.when(pedidoRepository.findById(1L)).thenReturn(Optional.of(pedido));
+        Mockito.when(estadoService.findByCodigo("cancelado")).thenReturn(Optional.of(estadoCancelado));
+
+        // cancela pedido
+        pedidoService.cancelarPedido(1L);
+
+        // verifica que el estado cambie a cancelado
+        assertEquals("cancelado", pedido.getEstado().getCodigo());
+    }
+
+    /* CPU 8 cancelar pedido entregado */
+    @Test
+    void cancelarPedidoEntregado() {
+        Pedido pedido = new Pedido();
+        pedido.setId(1L);
+        Estado estadoEntregado = new Estado();
+        estadoEntregado.setCodigo("entregado");
+        pedido.setEstado(estadoEntregado);
+
+        // mockeo del repositorio
+        Mockito.when(pedidoRepository.findById(1L)).thenReturn(Optional.of(pedido));
+
+        // se intenta cancelar el pedido y se debe lanzar la excepcion
+        InvalidEntityException thrown = assertThrows(InvalidEntityException.class,
+                () -> pedidoService.cancelarPedido(1L));
+
+        assertEquals("Solo se puede cancelar un pedido en estado 'preparación' o 'pendiente' ", thrown.getMessage());
+    }
+
+    /* CPI 11 */
+    private Pedido pedido;
+
+    @Test
+    public void testTransicionDeEstadoPedido() {
+
+        MockitoAnnotations.openMocks(this);
+        Estado estadoPendiente = new Estado(1L, "Pendiente");
+        pedido = new Pedido();
+        pedido.setId(1L);
+        pedido.setEstado(estadoPendiente);
+
+        when(pedidoRepository.findById(1L)).thenReturn(Optional.of(pedido));
+        when(estadoRepository.findByNombre("Enviado")).thenReturn(Optional.of(new Estado(2L, "Enviado")));
+        when(estadoRepository.findByNombre("Entregado")).thenReturn(Optional.of(new Estado(3L, "Entregado")));
+    }
+
+    @Test
+    public void testTransicionDeEstado() {
+        Estado estadoPendiente = new Estado();
+        estadoPendiente.setId(1L);
+        estadoPendiente.setNombre("Pendiente");
+        Pedido pedido = new Pedido();
+        pedido.setId(1L);
+        pedido.setEstado(estadoPendiente);
+
+        when(pedidoRepository.findById(1L)).thenReturn(Optional.of(pedido));
+        when(estadoRepository.findByNombre("Enviado")).thenReturn(Optional.of(new Estado(2L, "Enviado")));
+        when(estadoRepository.findByNombre("Entregado")).thenReturn(Optional.of(new Estado(3L, "Entregado")));
+
+        assertNotNull(pedido.getEstado(), "El estado del pedido no debe ser null");
+        assertEquals("Pendiente", pedido.getEstado().getNombre(), "El estado debe ser Pendiente");
+
+        pedidoService.cambiarEstadoPedido(1L, "Enviado");
+        verify(pedidoRepository).save(pedido);
+        assertEquals("Enviado", pedido.getEstado().getNombre(), "El estado debe haber cambiado a Enviado");
+
+        pedidoService.cambiarEstadoPedido(1L, "Entregado");
+        verify(pedidoRepository, times(2)).save(pedido);
+        assertEquals("Entregado", pedido.getEstado().getNombre(), "El estado debe haber cambiado a Entregado");
+    }
+
 }

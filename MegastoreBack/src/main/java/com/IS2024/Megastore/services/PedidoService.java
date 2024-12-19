@@ -52,6 +52,15 @@ public class PedidoService {
         return this.repository.getById(id);
     }
 
+    public void cambiarEstadoPedido(Long pedidoId, String nuevoEstado) {
+        Pedido pedido = repository.findById(pedidoId)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado"));
+        Estado estado = estadoRepository.findByNombre(nuevoEstado)
+                .orElseThrow(() -> new ResourceNotFoundException("Estado no encontrado"));
+        pedido.setEstado(estado);
+        repository.save(pedido);
+    }
+
     public List<Pedido> findAll() {
         return this.repository.findAll();
     }
@@ -220,12 +229,13 @@ public class PedidoService {
                         }
                         break;
                     case "EP":
-                        System.out.println("Estado actual: " + (p.getEstado() == null ? "null" : p.getEstado().getCodigo()));
+                        System.out.println(
+                                "Estado actual: " + (p.getEstado() == null ? "null" : p.getEstado().getCodigo()));
                         if (p.getEstado() == null || !p.getEstado().getCodigo().equals("PN")) {
                             throw new IllegalStateException("No se puede pasar a enPreparacion");
                         }
                         break;
-                    
+
                     case "ET": // solo se puede pasar desde enPreparacion
                         if (p.getEstado() == null && !p.getEstado().getCodigo().equals("EP")) {
                             throw new IllegalStateException("No se puede entregar");
@@ -341,8 +351,8 @@ public class PedidoService {
         return resultados;
     }
 
-     // CANCELAR PEDIDO
-     public void cancelarPedido(Long pedidoId) {
+    // CANCELAR PEDIDO
+    public void cancelarPedido(Long pedidoId) {
         Pedido pedido = this.repository.findById(pedidoId)
                 .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado con id " + pedidoId));
         if ("en preparación".equals(pedido.getEstado().getCodigo())
