@@ -18,9 +18,6 @@ import com.IS2024.Megastore.Exceptions.InvalidEntityException;
 import com.IS2024.Megastore.entities.Producto;
 import com.IS2024.Megastore.entities.CategoriaProducto;
 import com.IS2024.Megastore.repositories.ProductoRepository;
-import com.IS2024.Megastore.services.CategoriaProductoService;
-import com.IS2024.Megastore.services.ProductoService;
-import com.IS2024.Megastore.services.VarianteProductoService;
 
 public class ProductoServiceTest {
 

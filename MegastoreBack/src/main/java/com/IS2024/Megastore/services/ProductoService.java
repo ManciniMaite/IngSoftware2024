@@ -44,8 +44,16 @@ public class ProductoService {
         return this.repository.findAll();
     }
 
+    // validar que el precio no sea menor a 0
+    public void validarPrecio(Long precio) {
+        if (precio < 0) {
+            throw new InvalidEntityException("El precio del producto no puede ser menor a 0");
+        }
+    }
+
     public Producto updateProducto(Long id, Producto producto) {
         Optional<Producto> existingProducto = this.repository.findById(id);
+        
         if (existingProducto.isPresent()) {
             Producto updatedProducto = existingProducto.get();
 
@@ -53,6 +61,8 @@ public class ProductoService {
             updatedProducto.setStock(producto.getStock());
             updatedProducto.setPrecio(producto.getPrecio());
             updatedProducto.setFoto(producto.getFoto());
+
+            validarPrecio(producto.getPrecio());
 
             // CODIGO, debe ser unico.
             if (!producto.getCodigo().equals(updatedProducto.getCodigo())) { // Se esta cambiando el codigo de producto
@@ -124,6 +134,8 @@ public class ProductoService {
                 }
             }
         }
+
+        validarPrecio(producto.getPrecio());
 
         return this.repository.save(producto);
     }

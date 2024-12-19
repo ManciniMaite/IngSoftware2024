@@ -255,9 +255,6 @@ class PedidoServiceTest {
 
     /* CPI 11 */
     private Pedido pedido;
-    private Estado pendiente;
-    private Estado enviado;
-    private Estado entregado;
 
     @Test
     public void testTransicionDeEstadoPedido() {

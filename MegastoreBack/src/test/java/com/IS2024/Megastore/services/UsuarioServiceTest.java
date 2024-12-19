@@ -3,15 +3,11 @@ package com.IS2024.Megastore.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.checkerframework.checker.units.qual.s;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,22 +20,8 @@ import java.util.Collections;
 import com.IS2024.Megastore.entities.Usuario;
 import com.IS2024.Megastore.repositories.RolRepository;
 import com.IS2024.Megastore.repositories.UsuarioRepository;
-import com.IS2024.Megastore.services.UsuarioService;
-import com.IS2024.Megastore.services.UsuarioService;
 import com.IS2024.Megastore.Exceptions.InvalidEntityException;
-import com.IS2024.Megastore.controller.UsuarioRestController;
-import com.IS2024.Megastore.entities.Direccion;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @SpringBootTest
@@ -51,7 +33,7 @@ public class UsuarioServiceTest {
      */
     @InjectMocks
     private UsuarioService usuarioService;
-    private Usuario usuarioValido;
+
 
     @BeforeEach
     void setUp() {
@@ -129,7 +111,6 @@ public class UsuarioServiceTest {
     @Mock
     private UsuarioRepository usuarioRepository;
 
-    private Usuario usuario;
     /*
      * CPI 1
      * 

@@ -8,7 +8,6 @@ import com.IS2024.Megastore.Exceptions.InvalidEntityException;
 import com.IS2024.Megastore.Exceptions.ResourceNotFoundException;
 import com.IS2024.Megastore.entities.Usuario;
 import com.IS2024.Megastore.entities.Direccion;
-import com.IS2024.Megastore.entities.Rol;
 import com.IS2024.Megastore.model.iniciarSesionRq;
 import com.IS2024.Megastore.repositories.RolRepository;
 import com.IS2024.Megastore.repositories.UsuarioRepository;
@@ -36,8 +35,6 @@ public class UsuarioService implements UsuarioRepository {
     private UsuarioRepository repository;
     @Autowired
     private DireccionService direccionService;
-    @Autowired
-    private RolRepository rolRepository;
 
     @SuppressWarnings("null")
     @Override
