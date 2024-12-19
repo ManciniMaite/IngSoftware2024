@@ -12,6 +12,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author maite
  */
-public interface EstadoRepository extends JpaRepository<Estado,Long> {
+public interface EstadoRepository extends JpaRepository<Estado, Long> {
     Optional<Estado> findByCodigo(String codigo);
+
+    Optional<Estado> findByNombre(String codigo);
+
 }

@@ -44,6 +44,7 @@ public class UsuarioService implements UsuarioRepository {
     public Optional<Usuario> findById(Long id) {
         return this.repository.findById(id);
     }
+
     @SuppressWarnings({ "null", "deprecation" })
     @Override
     public Usuario getById(Long id) {
@@ -70,6 +71,10 @@ public class UsuarioService implements UsuarioRepository {
             }
             if (usuario.getCorreo() == null || usuario.getCorreo().isEmpty()) {
                 throw new InvalidEntityException("El correo es un campo obligatorio");
+            }
+
+            if (usuario.getDirecciones() == null || usuario.getCorreo().isEmpty()) {
+                throw new InvalidEntityException("El domicilio es un campo obligatorio");
             }
 
             // Validar si el correo ha cambiado y si ya existe otro usuario con el mismo
@@ -112,22 +117,25 @@ public class UsuarioService implements UsuarioRepository {
     public Usuario createUsuario(Usuario us) {
         if (us.getCorreo() == null || "".equals(us.getCorreo()) || us.getCorreo().isEmpty()) {
             throw new InvalidEntityException("El correo es un campo obligatorio.");
+
         } else {
             Optional<Usuario> existingUs = this.repository.findByCorreo(us.getCorreo());
             if (existingUs.isPresent()) {
                 throw new InvalidEntityException("Ya existe un usuario con el mismo correo");
             } else {
                 // Buscar el rol "usuario" en la base de datos
-                Rol rolUsuario = rolRepository.findByNombre("usuario")
-                        .orElseThrow(() -> new ResourceNotFoundException("Rol 'usuario' no encontrado"));
+                // Rol rolUsuario = rolRepository.findByNombre("usuario")
+                // .orElseThrow(() -> new ResourceNotFoundException("Rol 'usuario' no
+                // encontrado"));
 
                 // Asignar el rol al nuevo usuario
-                us.setRol(rolUsuario);
+                // us.setRol(rolUsuario);
 
                 return this.repository.save(us);
 
             }
         }
+
     }
 
     @SuppressWarnings("null")

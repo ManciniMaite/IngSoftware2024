@@ -22,4 +22,12 @@ public class Estado {
     private Long id;
     private String nombre;
     private String codigo;
+
+    public Estado(Long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public Estado() {
+    }
 }
